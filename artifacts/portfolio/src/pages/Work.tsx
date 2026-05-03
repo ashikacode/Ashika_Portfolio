@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { RiverRenewCard } from "@/components/RiverRenewCard";
 
 const projects = [
   {
@@ -79,7 +78,11 @@ export default function Work() {
                 {/* Project image / card */}
                 <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-border/30 relative bg-card">
                   {project.id === "riverrenew-mataniko" ? (
-                    <RiverRenewCard />
+                    <img
+                      src="/riverrenew-prototype.png"
+                      alt="RiverRenew Mataniko water filtration prototype"
+                      className="w-full h-full object-cover object-center"
+                    />
                   ) : (
                     <>
                       <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-muted/10 opacity-50" />

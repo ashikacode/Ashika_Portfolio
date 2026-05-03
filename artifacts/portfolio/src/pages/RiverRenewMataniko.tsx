@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { RiverRenewCard } from "@/components/RiverRenewCard";
 
 export default function RiverRenewMataniko() {
   return (
@@ -22,8 +21,12 @@ export default function RiverRenewMataniko() {
             </h1>
           </div>
 
-          <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-border/20">
-            <RiverRenewCard />
+          <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-border/20 bg-[#f5f0e8]">
+            <img
+              src="/riverrenew-prototype.png"
+              alt="RiverRenew Mataniko water filtration prototype — cross-section showing coconut husk, sandstone, volcanic soil, and charcoal core layers"
+              className="w-full h-full object-contain object-center"
+            />
           </div>
         </header>
 
