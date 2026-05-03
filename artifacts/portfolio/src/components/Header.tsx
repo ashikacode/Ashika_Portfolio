@@ -27,7 +27,7 @@ export default function Header() {
         scrolled ? "bg-background/95 backdrop-blur-sm border-b border-border/40 py-4" : "bg-transparent py-6"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 md:px-8 flex justify-between items-center">
+      <div className="w-full px-6 md:px-12 lg:px-20 flex justify-between items-center">
         <Link href="/" className="z-50 block transition-transform hover:scale-[0.98]">
           <img 
             src={logoPath} 
