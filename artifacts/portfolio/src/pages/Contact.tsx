@@ -22,10 +22,10 @@ export default function Contact() {
           </p>
           
           <a 
-            href="mailto:hello@ashikaramesh.com" 
+            href="mailto:ashika.rameshk@gmail.com" 
             className="mt-8 text-2xl md:text-4xl font-serif italic text-primary hover:text-foreground transition-colors duration-300"
           >
-            hello@ashikaramesh.com
+            ashika.rameshk@gmail.com
           </a>
         </header>
       </motion.div>

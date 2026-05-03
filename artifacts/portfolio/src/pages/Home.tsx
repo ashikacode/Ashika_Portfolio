@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import logoPath from "@assets/logo_transparent.png";
 import { Link } from "wouter";
 
 export default function Home() {
@@ -41,13 +40,6 @@ export default function Home() {
           animate="visible"
           variants={containerVariants}
         >
-          <motion.img 
-            src={logoPath} 
-            alt="Ashika Ramesh" 
-            className="w-[280px] md:w-[420px] max-w-full h-auto mb-16"
-            variants={itemVariants}
-          />
-          
           <motion.div className="max-w-3xl mx-auto flex flex-col gap-8" variants={itemVariants}>
             <div className="text-xs md:text-sm font-bold tracking-[0.2em] text-muted-foreground uppercase">
               LEARNING · SERVICE · UX RESEARCH

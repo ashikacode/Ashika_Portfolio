@@ -32,7 +32,7 @@ export default function Header() {
           <img 
             src={logoPath} 
             alt="Ashika Ramesh Logo" 
-            className="w-48 md:w-[280px] h-auto object-contain"
+            className="w-32 md:w-[180px] h-auto object-contain"
             data-testid="header-logo"
           />
         </Link>
