@@ -1,6 +1,10 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 
+const cs = {
+  box: { backgroundColor: "#003049", color: "#fcf5e9" },
+};
+
 export default function MemoryInAScent() {
   return (
     <>
@@ -9,176 +13,199 @@ export default function MemoryInAScent() {
         <meta name="description" content="A portable device that uses scent to unlock memory, designed for the people who need it most." />
       </Helmet>
 
-      <article className="flex flex-col gap-24 pb-24">
-        {/* Hero Section */}
-        <header className="flex flex-col gap-12">
+      <motion.article
+        className="flex flex-col gap-24 pb-24"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        {/* ── Hero ── */}
+        <header className="flex flex-col gap-10">
           <div className="flex flex-col gap-4 items-start">
-            <span className="text-xs font-mono tracking-widest text-muted-foreground bg-muted/30 px-3 py-1 rounded-sm border border-border/50">
+            <span
+              className="text-xs font-mono tracking-widest px-3 py-1 rounded-sm border"
+              style={{ color: "#003049", borderColor: "#003049", opacity: 0.65 }}
+            >
               02 · SPECULATIVE DESIGN · HEALTH · ARDUINO
             </span>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-primary">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight" style={{ color: "#003049" }}>
               MEMORY IN A SCENT
             </h1>
           </div>
 
-          <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-card rounded-sm border border-border/30 relative">
-            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30 font-mono text-sm tracking-widest">
-              HERO IMAGE PLACEHOLDER
-            </div>
+          <div
+            className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm flex items-center justify-center"
+            style={{ border: "1px solid #003049", opacity: 0.9 }}
+          >
+            <span className="font-mono text-sm tracking-widest" style={{ color: "#003049", opacity: 0.3 }}>
+              IMAGE COMING SOON
+            </span>
           </div>
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
-          {/* Main Content */}
-          <div className="lg:col-span-8 flex flex-col gap-24">
-            
+
+          {/* ── Main Content ── */}
+          <div className="lg:col-span-8 flex flex-col gap-20">
+
+            {/* The Problem */}
             <section className="flex flex-col gap-6">
-              <div className="border-b border-border/60 pb-2">
-                <h2 className="text-sm font-bold tracking-[0.15em] uppercase text-muted-foreground">THE PROBLEM</h2>
+              <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
+                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#003049", opacity: 0.55 }}>
+                  THE PROBLEM
+                </h2>
               </div>
-              <p className="text-lg leading-relaxed text-foreground/90 font-serif">
+              <p className="text-lg leading-relaxed" style={{ color: "#0a0a0a" }}>
                 Current human-computer interaction is digitally amnesic. While we can store thousands of high-definition 'flat files' in the cloud, our digital memories lack the chemical texture that makes a moment feel present in the body.
               </p>
             </section>
 
+            {/* Opportunity */}
             <section className="flex flex-col gap-6">
-              <div className="border-b border-border/60 pb-2">
-                <h2 className="text-sm font-bold tracking-[0.15em] uppercase text-muted-foreground">OPPORTUNITY</h2>
+              <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
+                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#003049", opacity: 0.55 }}>
+                  OPPORTUNITY
+                </h2>
               </div>
-              <div className="flex flex-col gap-6 text-foreground/80 leading-relaxed">
+              <div className="flex flex-col gap-5 leading-relaxed" style={{ color: "#0a0a0a" }}>
                 <p>
                   The objective was to improve quality of life by leveraging the Proustian Effect: the unique ability of scent to trigger vivid, autobiographical memories.
                 </p>
                 <p>
                   By identifying a non-pharmacological intervention opportunity for individuals suffering from early stage dementia or isolation.
                 </p>
-                <p className="p-6 bg-muted/20 border-l-2 border-primary italic">
-                  <strong className="not-italic text-primary font-sans mr-2">Strategic Goal:</strong>
+                <p className="p-6 rounded-sm italic" style={{ backgroundColor: "#003049", color: "#fcf5e9" }}>
+                  <strong className="not-italic font-sans mr-2" style={{ opacity: 0.6 }}>Strategic Goal:</strong>
                   Reposition technology as a tool to unlock cherished memories through a portable, accessible olfactory display that translates visual data (photographs) into aromatic triggers.
                 </p>
               </div>
             </section>
 
-            <section className="flex flex-col gap-6">
-              <div className="border-b border-border/60 pb-2">
-                <h2 className="text-sm font-bold tracking-[0.15em] uppercase text-muted-foreground">SOLUTION EXPLORATION</h2>
-              </div>
-              <div className="flex flex-col gap-8 text-foreground/80 leading-relaxed">
-                <p>
-                  The design journey involved moving from abstract concept to a functional and aesthetically balanced prototype.
-                </p>
-                
-                <div className="grid gap-6">
-                  <div className="flex flex-col gap-2">
-                    <strong className="text-foreground font-mono text-sm tracking-wide">THE PROTOTYPE PIVOT</strong>
-                    <p>Initial sketches explored cuboid, TV-like forms, but we pivoted to a combination of a wooden base and an acrylic lid to balance vintage nostalgia with modern precision.</p>
-                  </div>
-                  
-                  <div className="flex flex-col gap-2">
-                    <strong className="text-foreground font-mono text-sm tracking-wide">HURDLES</strong>
-                    <p>Unlike RGB color mixing in vision, smell is not additive. Combining Odor A and Odor B doesn't result in a blend, but often an entirely new 'Odor C', making automated scent recreation a significant technical challenge.</p>
-                  </div>
-                  
-                  <div className="flex flex-col gap-2">
-                    <strong className="text-foreground font-mono text-sm tracking-wide">THE 'ICKINESS' FACTOR</strong>
-                    <p>We had to account for individual genetic differences in scent perception. What is calming to one person can be 'icky' or 'overpowering' to another.</p>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <section className="flex flex-col gap-6">
-              <div className="border-b border-border/60 pb-2">
-                <h2 className="text-sm font-bold tracking-[0.15em] uppercase text-muted-foreground">THE PORTABLE OLFACTORY DISPLAY</h2>
-              </div>
-              <div className="flex flex-col gap-6 text-foreground/80 leading-relaxed">
-                <p>
-                  The final prototype is a hybrid device that uses color analysis to specific scent profiles.
-                </p>
-                <p>
-                  <strong className="text-foreground">Technical Execution:</strong> An Arduino Uno interfaces with an Adafruit TCS34725 RGB sensor to detect dominant photo colors. This data triggers ultrasonic piezoelectric atomizers to release a fine mist (10ml) of the essential oils.
-                </p>
-              </div>
-
-              {/* Process Flow Diagram */}
-              <div className="mt-12 p-8 bg-card border border-border/50 rounded-sm">
-                <h3 className="text-xs font-mono tracking-widest text-muted-foreground mb-8 text-center">PROCESS FLOW</h3>
-                
-                <div className="flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-xs text-center">
-                  <div className="p-4 bg-muted/30 border border-border rounded-sm w-full md:w-auto">INSERT PHOTO</div>
-                  <div className="text-primary">→</div>
-                  <div className="p-4 bg-muted/30 border border-border rounded-sm w-full md:w-auto">RGB SENSOR READS</div>
-                  <div className="text-primary">→</div>
-                  <div className="p-4 bg-muted/30 border border-border rounded-sm w-full md:w-auto">COLOUR ANALYSIS</div>
-                  <div className="text-primary">→</div>
-                  
-                  <div className="flex flex-col gap-4 w-full md:w-auto">
-                    <div className="p-4 bg-primary/10 border border-primary/30 text-primary rounded-sm">SCENT DATABASE MATCH</div>
-                    <div className="text-muted-foreground border border-dashed border-border/50 p-2 rounded-sm text-[10px]">No match: No scent released</div>
-                  </div>
-                  
-                  <div className="text-primary">→</div>
-                  <div className="p-4 bg-primary text-primary-foreground font-bold rounded-sm w-full md:w-auto">ATOMIZER FIRES</div>
-                </div>
-                
-                <div className="mt-12 flex flex-col items-center gap-4">
-                  <span className="text-[10px] uppercase tracking-widest text-muted-foreground">SCENT OUTPUTS</span>
-                  <div className="flex gap-4">
-                    <span className="px-4 py-1.5 rounded-full border border-orange-500/30 text-orange-400 bg-orange-500/10 text-xs tracking-wider">Orange</span>
-                    <span className="px-4 py-1.5 rounded-full border border-purple-500/30 text-purple-400 bg-purple-500/10 text-xs tracking-wider">Lavender</span>
-                    <span className="px-4 py-1.5 rounded-full border border-amber-700/30 text-amber-600 bg-amber-700/10 text-xs tracking-wider">Tobacco</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-
+            {/* Solution Exploration */}
             <section className="flex flex-col gap-8">
-              <div className="border-b border-border/60 pb-2">
-                <h2 className="text-sm font-bold tracking-[0.15em] uppercase text-muted-foreground">FUTURE MODEL</h2>
+              <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
+                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#003049", opacity: 0.55 }}>
+                  SOLUTION EXPLORATION
+                </h2>
+              </div>
+              <div className="flex flex-col gap-8 leading-relaxed" style={{ color: "#0a0a0a" }}>
+                <p>The design journey involved moving from abstract concept to a functional and aesthetically balanced prototype.</p>
+                <div className="flex flex-col gap-6">
+                  {[
+                    { label: "THE PROTOTYPE PIVOT", body: "Initial sketches explored cuboid, TV-like forms, but we pivoted to a combination of a wooden base and an acrylic lid to balance vintage nostalgia with modern precision." },
+                    { label: "HURDLES", body: "Unlike RGB color mixing in vision, smell is not additive. Combining Odor A and Odor B doesn't result in a blend, but often an entirely new 'Odor C', making automated scent recreation a significant technical challenge." },
+                    { label: "THE 'ICKINESS' FACTOR", body: "We had to account for individual genetic differences in scent perception. What is calming to one person can be 'icky' or 'overpowering' to another." },
+                  ].map((item) => (
+                    <div key={item.label} className="flex flex-col gap-2">
+                      <strong className="font-mono text-xs tracking-wide" style={{ color: "#003049" }}>{item.label}</strong>
+                      <p style={{ color: "#0a0a0a", opacity: 0.8 }}>{item.body}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            {/* The Portable Olfactory Display */}
+            <section className="flex flex-col gap-8">
+              <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
+                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#003049", opacity: 0.55 }}>
+                  THE PORTABLE OLFACTORY DISPLAY
+                </h2>
+              </div>
+              <div className="flex flex-col gap-5 leading-relaxed" style={{ color: "#0a0a0a" }}>
+                <p>The final prototype is a hybrid device that uses color analysis to specific scent profiles.</p>
+                <p>
+                  <strong style={{ color: "#003049" }}>Technical Execution:</strong> An Arduino Uno interfaces with an Adafruit TCS34725 RGB sensor to detect dominant photo colors. This data triggers ultrasonic piezoelectric atomizers to release a fine mist (10ml) of the essential oils.
+                </p>
+              </div>
+
+              {/* Process Flow */}
+              <div className="mt-6 p-8 rounded-sm" style={cs.box}>
+                <h3 className="text-xs font-mono tracking-widest mb-8 text-center" style={{ color: "#fcf5e9", opacity: 0.5 }}>
+                  PROCESS FLOW
+                </h3>
+                <div className="flex flex-col md:flex-row items-center justify-between gap-3 font-mono text-xs text-center">
+                  {["INSERT PHOTO", "RGB SENSOR READS", "COLOUR ANALYSIS"].map((step, i) => (
+                    <>
+                      <div key={step} className="px-4 py-3 rounded-sm w-full md:w-auto" style={{ backgroundColor: "rgba(252,245,233,0.1)", color: "#fcf5e9", border: "1px solid rgba(252,245,233,0.2)" }}>
+                        {step}
+                      </div>
+                      <div key={`arrow-${i}`} style={{ color: "#fcf5e9", opacity: 0.4 }}>→</div>
+                    </>
+                  ))}
+                  <div className="flex flex-col gap-3 w-full md:w-auto">
+                    <div className="px-4 py-3 rounded-sm" style={{ backgroundColor: "rgba(252,245,233,0.2)", color: "#fcf5e9", border: "1px solid rgba(252,245,233,0.4)" }}>
+                      SCENT DATABASE MATCH
+                    </div>
+                    <div className="text-center text-[10px] p-2 rounded-sm" style={{ color: "#fcf5e9", opacity: 0.4, border: "1px dashed rgba(252,245,233,0.2)" }}>
+                      No match: No scent released
+                    </div>
+                  </div>
+                  <div style={{ color: "#fcf5e9", opacity: 0.4 }}>→</div>
+                  <div className="px-4 py-3 rounded-sm font-bold w-full md:w-auto" style={{ backgroundColor: "#fcf5e9", color: "#003049" }}>
+                    ATOMIZER FIRES
+                  </div>
+                </div>
+
+                <div className="mt-10 flex flex-col items-center gap-4">
+                  <span className="text-[10px] uppercase tracking-widest" style={{ color: "#fcf5e9", opacity: 0.4 }}>SCENT OUTPUTS</span>
+                  <div className="flex gap-4">
+                    {[
+                      { label: "Orange", color: "#f97316" },
+                      { label: "Lavender", color: "#a855f7" },
+                      { label: "Tobacco", color: "#92400e" },
+                    ].map((s) => (
+                      <span key={s.label} className="px-4 py-1.5 rounded-full text-xs tracking-wider" style={{ border: `1px solid ${s.color}60`, color: s.color, backgroundColor: `${s.color}18` }}>
+                        {s.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Future Model */}
+            <section className="flex flex-col gap-8">
+              <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
+                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#003049", opacity: 0.55 }}>
+                  FUTURE MODEL
+                </h2>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 font-mono text-sm">
-                <div className="p-6 border border-border/50 bg-card/50 text-center flex items-center justify-center">Electronic Nose</div>
-                <div className="p-6 border border-border/50 bg-card/50 text-center flex items-center justify-center">Visual AI Recognition</div>
-                <div className="p-6 border border-border/50 bg-card/50 text-center flex items-center justify-center">Mobile Pairing</div>
-                <div className="p-6 border border-border/50 bg-card/50 text-center flex items-center justify-center">Machine Learning</div>
-                <div className="p-6 border border-border/50 bg-card/50 text-center flex items-center justify-center">Expanded Library</div>
-                <div className="p-6 border border-border/50 bg-card/50 text-center flex items-center justify-center">Compact Form</div>
+                {["Electronic Nose", "Visual AI Recognition", "Mobile Pairing", "Machine Learning", "Expanded Library", "Compact Form"].map((item) => (
+                  <div key={item} className="p-6 rounded-sm flex items-center justify-center text-center" style={cs.box}>
+                    <span style={{ color: "#fcf5e9" }}>{item}</span>
+                  </div>
+                ))}
               </div>
             </section>
 
           </div>
 
-          {/* Sidebar */}
+          {/* ── Sidebar ── */}
           <aside className="lg:col-span-4 sticky top-32">
-            <div className="p-8 border border-border/50 bg-card/30 flex flex-col gap-8 text-sm">
-              <h3 className="font-bold tracking-widest uppercase text-muted-foreground border-b border-border/50 pb-2">PROJECT DETAILS</h3>
-              
+            <div className="p-8 rounded-sm flex flex-col gap-8 text-sm" style={cs.box}>
+              <h3 className="font-bold tracking-widest uppercase pb-3" style={{ color: "#fcf5e9", opacity: 0.55, borderBottom: "1px solid rgba(252,245,233,0.2)" }}>
+                PROJECT DETAILS
+              </h3>
               <dl className="flex flex-col gap-6">
-                <div className="flex flex-col gap-2">
-                  <dt className="font-mono text-muted-foreground text-xs">TECHNOLOGY</dt>
-                  <dd className="leading-snug">Arduino Uno, RGB Sensor, Ultrasonic Atomisers, I2C</dd>
-                </div>
-                
-                <div className="flex flex-col gap-2">
-                  <dt className="font-mono text-muted-foreground text-xs">KEY OBJECTIVE</dt>
-                  <dd className="leading-snug">Speculative design + prototyping — exploring technology not as it is, but as it could be.</dd>
-                </div>
-                
-                <div className="flex flex-col gap-2">
-                  <dt className="font-mono text-muted-foreground text-xs">PRIMARY USERS</dt>
-                  <dd className="leading-snug">Early Stage Dementia & Alzheimer's patients, memory care environments</dd>
-                </div>
-                
-                <div className="flex flex-col gap-2">
-                  <dt className="font-mono text-muted-foreground text-xs">YEAR</dt>
-                  <dd className="leading-snug font-mono">2023</dd>
-                </div>
+                {[
+                  { label: "TECHNOLOGY", value: "Arduino Uno, RGB Sensor, Ultrasonic Atomisers, I2C" },
+                  { label: "KEY OBJECTIVE", value: "Speculative design + prototyping — exploring technology not as it is, but as it could be." },
+                  { label: "PRIMARY USERS", value: "Early Stage Dementia & Alzheimer's patients, memory care environments" },
+                  { label: "YEAR", value: "2023" },
+                ].map((item) => (
+                  <div key={item.label} className="flex flex-col gap-2">
+                    <dt className="font-mono text-xs" style={{ color: "#fcf5e9", opacity: 0.5 }}>{item.label}</dt>
+                    <dd className="leading-snug" style={{ color: "#fcf5e9" }}>{item.value}</dd>
+                  </div>
+                ))}
               </dl>
             </div>
           </aside>
 
         </div>
-      </article>
+      </motion.article>
     </>
   );
 }
