@@ -250,6 +250,48 @@ export default function About() {
           </div>
         </motion.section>
 
+        {/* Research */}
+        <motion.section variants={fadeUp} className="flex flex-col gap-8">
+          <div className="border-b border-border/60 pb-3">
+            <h2 className="text-sm font-bold tracking-[0.15em] uppercase text-muted-foreground">Research</h2>
+          </div>
+
+          <div className="flex flex-col gap-6">
+            {/* Paper */}
+            <a
+              href="https://dl.acm.org/doi/10.1145/3772318.3790973"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group p-8 border border-border/30 bg-card/20 flex flex-col gap-4 hover:border-primary/40 transition-colors duration-300"
+              data-testid="link-chi-paper"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <span className="font-mono text-xs text-primary tracking-wider uppercase">CHI 2026 — ACM Conference on Human Factors in Computing Systems</span>
+                <span className="font-mono text-xs text-muted-foreground tracking-wider shrink-0">2026</span>
+              </div>
+              <h3 className="font-bold leading-snug tracking-wide group-hover:text-primary transition-colors duration-300">
+                "My Tummy Has a Little Dragon": From Everyday Experiences of Gut Sounds to Interoceptive Interaction Design
+              </h3>
+              <p className="text-muted-foreground text-xs leading-relaxed font-mono">
+                Nandini Pasumarthy · Mia Huong Nguyen · <span className="text-foreground/80">Ashika Ramesh Krishnan</span> · Maria F. Montoya · Rakesh Patibanda · Jessica Danaher · Rohit Ashok Khot · Elise van den Hoven · Florian 'Floyd' Mueller
+              </p>
+              <span className="text-muted-foreground/50 font-mono text-xs tracking-wider">DOI: 10.1145/3772318.3790973 ↗</span>
+            </a>
+
+            {/* ORCID */}
+            <a
+              href="https://orcid.org/0009-0000-4001-0893"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-4 px-6 py-4 border border-border/20 bg-card/10 hover:border-primary/30 transition-colors duration-300 w-fit"
+              data-testid="link-orcid"
+            >
+              <span className="font-mono text-xs text-muted-foreground tracking-widest uppercase">ORCID Profile</span>
+              <span className="font-mono text-xs text-primary tracking-wider group-hover:underline">0009-0000-4001-0893 ↗</span>
+            </a>
+          </div>
+        </motion.section>
+
         {/* Certificates */}
         <motion.section variants={fadeUp} className="flex flex-col gap-8">
           <div className="border-b border-border/60 pb-3">
