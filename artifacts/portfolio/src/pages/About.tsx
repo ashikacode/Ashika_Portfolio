@@ -250,13 +250,26 @@ export default function About() {
           </div>
         </motion.section>
 
-        {/* Certificate */}
+        {/* Certificates */}
         <motion.section variants={fadeUp} className="flex flex-col gap-8">
           <div className="border-b border-border/60 pb-3">
             <h2 className="text-sm font-bold tracking-[0.15em] uppercase text-muted-foreground">Certificates</h2>
           </div>
-          <div className="p-8 border border-dashed border-border/30 bg-card/10 flex items-center justify-center">
-            <p className="text-muted-foreground/40 font-mono text-sm tracking-widest text-center">CERTIFICATE CONTENT TO BE ADDED</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {[
+              { title: "UI/UX Design Specialization", issuer: "CalArts" },
+              { title: "Introduction to Typography", issuer: "CalArts" },
+              { title: "Introduction to Psychology", issuer: "Yale University" },
+              { title: "Psychological First Aid", issuer: "Johns Hopkins University" },
+            ].map((cert) => (
+              <div
+                key={cert.title}
+                className="p-6 border border-border/25 bg-card/20 flex flex-col gap-2"
+              >
+                <span className="font-mono text-xs text-primary tracking-wider uppercase">{cert.issuer}</span>
+                <span className="font-bold tracking-wide text-sm">{cert.title}</span>
+              </div>
+            ))}
           </div>
         </motion.section>
 
