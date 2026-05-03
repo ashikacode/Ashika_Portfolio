@@ -43,7 +43,7 @@ export default function Contact() {
             href="mailto:ashika.rameshk@gmail.com"
             className="group inline-block"
           >
-            <span className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-none text-foreground group-hover:text-primary transition-colors duration-500">
+            <span className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight leading-snug text-foreground group-hover:text-primary transition-colors duration-500">
               ashika.rameshk
               <br />
               @gmail.com
