@@ -5,7 +5,7 @@ export default function RiverRenewMataniko() {
   return (
     <>
       <Helmet>
-        <title>RiverRenew Mataniko | Ashima Ramesh</title>
+        <title>RiverRenew Mataniko | Ashika Ramesh</title>
         <meta name="description" content="A nature-based riverbank restoration system designed to stabilize riverbanks and purify water for Honiara's most vulnerable settlements." />
       </Helmet>
 

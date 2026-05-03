@@ -5,8 +5,8 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About | Ashima Ramesh</title>
-        <meta name="description" content="About Ashima Ramesh, a Learning, Service and UX Research designer." />
+        <title>About | Ashika Ramesh</title>
+        <meta name="description" content="About Ashika Ramesh, a Learning, Service and UX Research designer." />
       </Helmet>
 
       <motion.div 
@@ -21,7 +21,7 @@ export default function About() {
               ABOUT
             </span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">ASHIMA RAMESH</h1>
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">ASHIKA RAMESH</h1>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-24 items-start">

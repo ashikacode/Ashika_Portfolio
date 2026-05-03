@@ -31,7 +31,7 @@ export default function Header() {
         <Link href="/" className="z-50 block transition-transform hover:scale-[0.98]">
           <img 
             src={logoPath} 
-            alt="Ashima Ramesh Logo" 
+            alt="Ashika Ramesh Logo" 
             className="w-48 md:w-[280px] h-auto object-contain"
             data-testid="header-logo"
           />

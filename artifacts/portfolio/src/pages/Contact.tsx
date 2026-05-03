@@ -5,8 +5,8 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>Contact | Ashima Ramesh</title>
-        <meta name="description" content="Get in touch with Ashima Ramesh." />
+        <title>Contact | Ashika Ramesh</title>
+        <meta name="description" content="Get in touch with Ashika Ramesh." />
       </Helmet>
 
       <motion.div 
@@ -22,10 +22,10 @@ export default function Contact() {
           </p>
           
           <a 
-            href="mailto:hello@ashimaramesh.com" 
+            href="mailto:hello@ashikaramesh.com" 
             className="mt-8 text-2xl md:text-4xl font-serif italic text-primary hover:text-foreground transition-colors duration-300"
           >
-            hello@ashimaramesh.com
+            hello@ashikaramesh.com
           </a>
         </header>
       </motion.div>

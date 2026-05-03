@@ -26,12 +26,12 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Ashima Ramesh | Learning & Service Designer</title>
-        <meta name="description" content="Portfolio of Ashima Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
-        <meta property="og:title" content="Ashima Ramesh | Learning & Service Designer" />
-        <meta property="og:description" content="Portfolio of Ashima Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
+        <title>Ashika Ramesh | Learning & Service Designer</title>
+        <meta name="description" content="Portfolio of Ashika Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
+        <meta property="og:title" content="Ashika Ramesh | Learning & Service Designer" />
+        <meta property="og:description" content="Portfolio of Ashika Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ashimaramesh.com/" />
+        <meta property="og:url" content="https://ashikaramesh.com/" />
       </Helmet>
 
       <div className="flex flex-col gap-32 mb-16">
@@ -43,7 +43,7 @@ export default function Home() {
         >
           <motion.img 
             src={logoPath} 
-            alt="Ashima Ramesh" 
+            alt="Ashika Ramesh" 
             className="w-[280px] md:w-[420px] max-w-full h-auto mb-16"
             variants={itemVariants}
           />

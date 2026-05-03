@@ -5,7 +5,7 @@ export default function MemoryInAScent() {
   return (
     <>
       <Helmet>
-        <title>Memory in a Scent | Ashima Ramesh</title>
+        <title>Memory in a Scent | Ashika Ramesh</title>
         <meta name="description" content="A portable device that uses scent to unlock memory, designed for the people who need it most." />
       </Helmet>
 
