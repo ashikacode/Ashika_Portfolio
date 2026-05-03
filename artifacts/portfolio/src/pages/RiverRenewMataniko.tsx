@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import { RiverRenewCard } from "@/components/RiverRenewCard";
 
 export default function RiverRenewMataniko() {
   return (
@@ -21,10 +22,8 @@ export default function RiverRenewMataniko() {
             </h1>
           </div>
 
-          <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-card rounded-sm border border-border/30 relative">
-            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30 font-mono text-sm tracking-widest">
-              HERO IMAGE PLACEHOLDER
-            </div>
+          <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-border/20">
+            <RiverRenewCard />
           </div>
         </header>
 

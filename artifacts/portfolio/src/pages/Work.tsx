@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
+import { RiverRenewCard } from "@/components/RiverRenewCard";
 
 const projects = [
   {
@@ -75,12 +76,18 @@ export default function Work() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.7, delay: index * 0.1 }}
               >
-                {/* Placeholder for Image */}
-                <div className="w-full aspect-[16/9] md:aspect-[21/9] bg-card rounded-sm overflow-hidden border border-border/30 relative">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-muted/10 opacity-50"></div>
-                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30 font-mono text-sm tracking-widest">
-                    {project.placeholder ? "COMING SOON" : "IMAGE PLACEHOLDER"}
-                  </div>
+                {/* Project image / card */}
+                <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-border/30 relative bg-card">
+                  {project.id === "riverrenew-mataniko" ? (
+                    <RiverRenewCard />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-muted/10 opacity-50" />
+                      <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30 font-mono text-sm tracking-widest">
+                        {project.placeholder ? "COMING SOON" : "IMAGE PLACEHOLDER"}
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 <div className="flex flex-col gap-4 px-2">
