@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 const socials = [
   { label: "LinkedIn", href: "https://www.linkedin.com/in/ashika-ramesh9/" },
   { label: "Behance", href: "https://www.behance.net/ashikarame" },
+  { label: "Instagram", href: "https://www.instagram.com/tinte.it/" },
 ];
 
 export default function Contact() {
@@ -16,21 +17,34 @@ export default function Contact() {
 
       <div className="min-h-[80vh] flex flex-col justify-between py-12 md:py-20">
 
-        {/* Top label */}
+        {/* Top label + socials row */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="border-b border-border/40 pb-4"
+          className="flex items-center justify-between border-b border-border/40 pb-4"
         >
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground">
             CONTACT
           </span>
+          <div className="flex items-center gap-6">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xs tracking-wide text-foreground/60 hover:text-primary transition-colors duration-300 underline underline-offset-4 decoration-border/40 hover:decoration-primary"
+              >
+                {s.label}
+              </a>
+            ))}
+          </div>
         </motion.div>
 
         {/* Centre — main content */}
         <motion.div
-          className="flex flex-col gap-10 md:gap-14 py-16 md:py-24"
+          className="flex flex-col gap-8 py-16 md:py-24"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
@@ -43,40 +57,14 @@ export default function Contact() {
             href="mailto:ashika.rameshk@gmail.com"
             className="group inline-block"
           >
-            <span className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight leading-snug text-foreground group-hover:text-primary transition-colors duration-500">
-              ashika.rameshk
-              <br />
-              @gmail.com
+            <span className="text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-foreground group-hover:text-primary transition-colors duration-500 whitespace-nowrap">
+              ashika.rameshk@gmail.com
             </span>
           </a>
         </motion.div>
 
-        {/* Bottom row — location + socials */}
-        <motion.div
-          className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8 border-t border-border/40 pt-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
-        >
-          <div className="flex flex-col gap-1">
-            <span className="text-xs tracking-[0.2em] uppercase text-muted-foreground">Based in</span>
-            <span className="font-mono text-sm text-foreground/80">Melbourne / NAARM</span>
-          </div>
-
-          <div className="flex items-center gap-8">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-sm tracking-wide text-foreground/60 hover:text-primary transition-colors duration-300 underline underline-offset-4 decoration-border hover:decoration-primary"
-              >
-                {s.label}
-              </a>
-            ))}
-          </div>
-        </motion.div>
+        {/* Bottom spacer */}
+        <div className="border-t border-border/20 pt-4" />
 
       </div>
     </>
