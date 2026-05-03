@@ -17,34 +17,21 @@ export default function Contact() {
 
       <div className="min-h-[80vh] flex flex-col justify-between py-12 md:py-20">
 
-        {/* Top label + socials row */}
+        {/* Top label */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="flex items-center justify-between border-b border-border/40 pb-4"
+          className="border-b border-border/40 pb-4"
         >
           <span className="text-xs font-bold tracking-[0.2em] uppercase text-muted-foreground">
             CONTACT
           </span>
-          <div className="flex items-center gap-6">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs tracking-wide text-foreground/60 hover:text-primary transition-colors duration-300 underline underline-offset-4 decoration-border/40 hover:decoration-primary"
-              >
-                {s.label}
-              </a>
-            ))}
-          </div>
         </motion.div>
 
-        {/* Centre — main content */}
+        {/* Main content */}
         <motion.div
-          className="flex flex-col gap-8 py-16 md:py-24"
+          className="flex flex-col gap-10 py-16 md:py-24"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
@@ -53,6 +40,7 @@ export default function Contact() {
             Open for collaborations, research partnerships, and new opportunities.
           </p>
 
+          {/* Email */}
           <a
             href="mailto:ashika.rameshk@gmail.com"
             className="group inline-block"
@@ -61,9 +49,24 @@ export default function Contact() {
               ashika.rameshk@gmail.com
             </span>
           </a>
+
+          {/* Social links */}
+          <div className="flex flex-wrap gap-6 pt-2">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-sm font-bold tracking-widest uppercase text-foreground/80 hover:text-primary transition-colors duration-300 border-b border-foreground/30 hover:border-primary pb-0.5"
+              >
+                {s.label} ↗
+              </a>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Bottom spacer */}
+        {/* Bottom rule */}
         <div className="border-t border-border/20 pt-4" />
 
       </div>
