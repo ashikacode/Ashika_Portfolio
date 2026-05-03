@@ -79,8 +79,8 @@ export default function Work() {
                 <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-border/30 relative bg-card">
                   {project.id === "riverrenew-mataniko" ? (
                     <img
-                      src="/riverrenew-prototype.png"
-                      alt="RiverRenew Mataniko water filtration prototype"
+                      src="/riverrenew-hero.png"
+                      alt="RiverRenew Mataniko — riverbank restoration before and after"
                       className="w-full h-full object-cover object-center"
                     />
                   ) : (

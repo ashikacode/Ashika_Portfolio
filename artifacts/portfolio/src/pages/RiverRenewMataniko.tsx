@@ -21,11 +21,11 @@ export default function RiverRenewMataniko() {
             </h1>
           </div>
 
-          <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-border/20 bg-[#f5f0e8]">
+          <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-border/20">
             <img
-              src="/riverrenew-prototype.png"
-              alt="RiverRenew Mataniko water filtration prototype — cross-section showing coconut husk, sandstone, volcanic soil, and charcoal core layers"
-              className="w-full h-full object-contain object-center"
+              src="/riverrenew-hero.png"
+              alt="RiverRenew Mataniko — before and after riverbank restoration"
+              className="w-full h-full object-cover object-center"
             />
           </div>
         </header>
@@ -92,9 +92,20 @@ export default function RiverRenewMataniko() {
                 </p>
                 
                 <div className="flex flex-col gap-10">
-                  <div className="bg-card/30 p-8 border border-border/50 rounded-sm">
-                    <h4 className="text-lg font-bold mb-4 font-mono tracking-wide text-foreground">Layered Filter Pots</h4>
-                    <p className="text-muted-foreground">Woven coir baskets containing sandstone for debris, volcanic soil for microbial remediation, and charcoal for chemical adsorption.</p>
+                  <div className="bg-card/30 border border-border/50 rounded-sm overflow-hidden">
+                    <div className="flex flex-col md:flex-row items-center gap-0">
+                      <div className="w-full md:w-48 shrink-0 flex items-center justify-center p-6">
+                        <img
+                          src="/riverrenew-prototype-nobg.png"
+                          alt="Layered filter pot cross-section showing coconut husk, sandstone, volcanic soil, and charcoal core"
+                          className="w-full max-w-[160px] md:max-w-none object-contain"
+                        />
+                      </div>
+                      <div className="p-8 border-t md:border-t-0 md:border-l border-border/50">
+                        <h4 className="text-lg font-bold mb-4 font-mono tracking-wide text-foreground">Layered Filter Pots</h4>
+                        <p className="text-muted-foreground">Woven coir baskets containing sandstone for debris, volcanic soil for microbial remediation, and charcoal for chemical adsorption.</p>
+                      </div>
+                    </div>
                   </div>
                   
                   <div className="bg-card/30 p-8 border border-border/50 rounded-sm">
