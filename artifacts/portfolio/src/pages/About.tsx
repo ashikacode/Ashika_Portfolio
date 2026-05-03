@@ -30,16 +30,19 @@ export default function About() {
           <div className="border-b border-border/60 pb-4">
             <span className="text-sm font-bold tracking-[0.15em] uppercase text-muted-foreground">ABOUT</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">ASHIKA RAMESH</h1>
         </motion.header>
 
         {/* Portrait + Intro */}
         <motion.div variants={fadeUp} className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
           <div className="md:col-span-4">
-            <div className="w-full aspect-[3/4] bg-card rounded-sm overflow-hidden border border-border/30 relative">
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30 font-mono text-sm tracking-widest text-center px-4">
-                PORTRAIT PLACEHOLDER
-              </div>
+            <div className="w-full aspect-[3/4] bg-card rounded-sm overflow-hidden border border-border/20 relative">
+              <img
+                src="/ashika-photo.png"
+                alt="Ashika Ramesh"
+                className="w-full h-full object-cover object-top"
+                width={600}
+                height={800}
+              />
             </div>
           </div>
           <div className="md:col-span-8 flex flex-col gap-6 text-lg leading-relaxed text-foreground/85">
