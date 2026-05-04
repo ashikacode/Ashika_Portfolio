@@ -22,12 +22,18 @@ export default function MemoryInAScent() {
         transition={{ duration: 0.6 }}
       >
         {/* ── Breadcrumb ── */}
-        <nav className="flex items-center gap-2 text-xs font-mono tracking-widest" style={{ color: "#003049", opacity: 0.6 }}>
-          <Link href="/work" className="hover:opacity-100 transition-opacity flex items-center gap-1.5">
-            ← WORK
+        <nav className="flex items-center gap-2 text-xs font-mono tracking-widest">
+          <Link
+            href="/work"
+            className="cursor-pointer"
+            style={{ color: "#003049", textDecoration: "none" }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = "1")}
+            onMouseLeave={e => (e.currentTarget.style.opacity = "0.7")}
+          >
+            <span style={{ color: "#003049", opacity: 0.7 }}>← WORK</span>
           </Link>
-          <span style={{ opacity: 0.4 }}>/</span>
-          <span>MEMORY IN A SCENT</span>
+          <span style={{ color: "#003049", opacity: 0.3 }}>/</span>
+          <span style={{ color: "#003049", opacity: 0.45 }}>MEMORY IN A SCENT</span>
         </nav>
 
         {/* ── Hero ── */}
