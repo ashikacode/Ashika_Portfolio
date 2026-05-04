@@ -1,7 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 
 const cs = {
+  label: { color: "#003049", opacity: 0.55 },
   box: { backgroundColor: "#003049", color: "#fcf5e9" },
 };
 
@@ -19,6 +21,15 @@ export default function MemoryInAScent() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
       >
+        {/* ── Breadcrumb ── */}
+        <nav className="flex items-center gap-2 text-xs font-mono tracking-widest" style={{ color: "#003049", opacity: 0.6 }}>
+          <Link href="/work" className="hover:opacity-100 transition-opacity flex items-center gap-1.5">
+            ← WORK
+          </Link>
+          <span style={{ opacity: 0.4 }}>/</span>
+          <span>MEMORY IN A SCENT</span>
+        </nav>
+
         {/* ── Hero ── */}
         <header className="flex flex-col gap-10">
           <div className="flex flex-col gap-4 items-start">
@@ -35,9 +46,9 @@ export default function MemoryInAScent() {
 
           <div
             className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm flex items-center justify-center"
-            style={{ border: "1px solid #003049", opacity: 0.9 }}
+            style={{ backgroundColor: "#003049" }}
           >
-            <span className="font-mono text-sm tracking-widest" style={{ color: "#003049", opacity: 0.3 }}>
+            <span className="font-mono text-sm tracking-widest" style={{ color: "#fcf5e9", opacity: 0.25 }}>
               IMAGE COMING SOON
             </span>
           </div>
@@ -51,7 +62,7 @@ export default function MemoryInAScent() {
             {/* The Problem */}
             <section className="flex flex-col gap-6">
               <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
-                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#003049", opacity: 0.55 }}>
+                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={cs.label}>
                   THE PROBLEM
                 </h2>
               </div>
@@ -63,7 +74,7 @@ export default function MemoryInAScent() {
             {/* Opportunity */}
             <section className="flex flex-col gap-6">
               <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
-                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#003049", opacity: 0.55 }}>
+                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={cs.label}>
                   OPPORTUNITY
                 </h2>
               </div>
@@ -74,7 +85,7 @@ export default function MemoryInAScent() {
                 <p>
                   By identifying a non-pharmacological intervention opportunity for individuals suffering from early stage dementia or isolation.
                 </p>
-                <p className="p-6 rounded-sm italic" style={{ backgroundColor: "#003049", color: "#fcf5e9" }}>
+                <p className="p-6 rounded-sm italic" style={cs.box}>
                   <strong className="not-italic font-sans mr-2" style={{ opacity: 0.6 }}>Strategic Goal:</strong>
                   Reposition technology as a tool to unlock cherished memories through a portable, accessible olfactory display that translates visual data (photographs) into aromatic triggers.
                 </p>
@@ -84,7 +95,7 @@ export default function MemoryInAScent() {
             {/* Solution Exploration */}
             <section className="flex flex-col gap-8">
               <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
-                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#003049", opacity: 0.55 }}>
+                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={cs.label}>
                   SOLUTION EXPLORATION
                 </h2>
               </div>
@@ -108,7 +119,7 @@ export default function MemoryInAScent() {
             {/* The Portable Olfactory Display */}
             <section className="flex flex-col gap-8">
               <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
-                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#003049", opacity: 0.55 }}>
+                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={cs.label}>
                   THE PORTABLE OLFACTORY DISPLAY
                 </h2>
               </div>
@@ -126,12 +137,12 @@ export default function MemoryInAScent() {
                 </h3>
                 <div className="flex flex-col md:flex-row items-center justify-between gap-3 font-mono text-xs text-center">
                   {["INSERT PHOTO", "RGB SENSOR READS", "COLOUR ANALYSIS"].map((step, i) => (
-                    <>
-                      <div key={step} className="px-4 py-3 rounded-sm w-full md:w-auto" style={{ backgroundColor: "rgba(252,245,233,0.1)", color: "#fcf5e9", border: "1px solid rgba(252,245,233,0.2)" }}>
+                    <div key={step} className="contents">
+                      <div className="px-4 py-3 rounded-sm w-full md:w-auto" style={{ backgroundColor: "rgba(252,245,233,0.1)", color: "#fcf5e9", border: "1px solid rgba(252,245,233,0.2)" }}>
                         {step}
                       </div>
-                      <div key={`arrow-${i}`} style={{ color: "#fcf5e9", opacity: 0.4 }}>→</div>
-                    </>
+                      <div style={{ color: "#fcf5e9", opacity: 0.4 }}>→</div>
+                    </div>
                   ))}
                   <div className="flex flex-col gap-3 w-full md:w-auto">
                     <div className="px-4 py-3 rounded-sm" style={{ backgroundColor: "rgba(252,245,233,0.2)", color: "#fcf5e9", border: "1px solid rgba(252,245,233,0.4)" }}>
@@ -167,7 +178,7 @@ export default function MemoryInAScent() {
             {/* Future Model */}
             <section className="flex flex-col gap-8">
               <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
-                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={{ color: "#003049", opacity: 0.55 }}>
+                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={cs.label}>
                   FUTURE MODEL
                 </h2>
               </div>
