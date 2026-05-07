@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Cursor from "@/components/Cursor";
 
 // Pages
 import Home from "@/pages/Home";
@@ -22,13 +23,14 @@ function Router() {
 
   return (
     <div
-      className="flex flex-col min-h-[100dvh] selection:bg-primary selection:text-primary-foreground transition-colors duration-300"
+      className="flex flex-col min-h-[100dvh] selection:bg-primary selection:text-primary-foreground transition-colors duration-300 cursor-none"
       style={
         isCaseStudy
           ? { backgroundColor: "#fcf5e9", color: "#0a0a0a" }
           : {}
       }
     >
+      <Cursor />
       <Header />
       <main className="flex-1 w-full max-w-6xl mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-16">
         <Switch>
