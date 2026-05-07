@@ -227,7 +227,7 @@ export default function RiverRenewMataniko() {
                 <img
                   src="/riverrenew-prototype-full.png"
                   alt="Layered filter pot cross-section with material labels"
-                  className="max-h-72 w-auto object-contain"
+                  className="max-h-[26rem] w-auto object-contain"
                   style={{ imageRendering: "crisp-edges" }}
                 />
               </div>
