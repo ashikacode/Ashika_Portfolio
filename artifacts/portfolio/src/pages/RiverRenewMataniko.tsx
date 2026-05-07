@@ -225,9 +225,9 @@ export default function RiverRenewMataniko() {
               {/* Prototype image — standalone */}
               <div className="flex justify-center py-6">
                 <img
-                  src="/riverrenew-prototype-nobg.png"
-                  alt="Layered filter pot cross-section"
-                  className="max-h-80 w-auto object-contain"
+                  src="/riverrenew-prototype-full.png"
+                  alt="Layered filter pot cross-section with material labels"
+                  className="max-h-[32rem] w-auto object-contain"
                 />
               </div>
 
