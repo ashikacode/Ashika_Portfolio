@@ -7,7 +7,7 @@ const MARQUEE_TEXT =
 
 function Marquee() {
   return (
-    <div className="overflow-hidden border-y border-border/30 py-4 select-none">
+    <div className="overflow-hidden border-y border-border/20 py-4 select-none">
       <div
         className="flex whitespace-nowrap font-mono text-xs tracking-[0.22em] text-muted-foreground"
         style={{ animation: "marquee 28s linear infinite" }}
@@ -20,11 +20,11 @@ function Marquee() {
 }
 
 const lineVariants = {
-  hidden: { opacity: 0, y: 60 },
+  hidden: { opacity: 0, y: 80 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 1, ease: [0.16, 1, 0.3, 1], delay: i * 0.12 },
+    transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: i * 0.14 },
   }),
 };
 
@@ -32,22 +32,22 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Ashika Ramesh | Learning & Service Designer</title>
-        <meta name="description" content="Portfolio of Ashika Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
-        <meta property="og:title" content="Ashika Ramesh | Learning & Service Designer" />
-        <meta property="og:description" content="Portfolio of Ashika Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
+        <title>Ashima Ramesh | Learning & Service Designer</title>
+        <meta name="description" content="Portfolio of Ashima Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
+        <meta property="og:title" content="Ashima Ramesh | Learning & Service Designer" />
+        <meta property="og:description" content="Portfolio of Ashima Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ashikaramesh.com/" />
+        <meta property="og:url" content="https://ashimaramesh.com/" />
       </Helmet>
 
       <div className="flex flex-col">
 
         {/* ── Full-viewport hero ── */}
-        <section className="min-h-screen flex flex-col justify-between -mt-32 pt-32 pb-10 relative overflow-hidden">
+        <section className="min-h-screen flex flex-col justify-between -mt-32 pt-32 pb-12 relative overflow-hidden">
 
-          {/* Massive headline */}
-          <div className="flex-1 flex flex-col justify-center overflow-hidden">
-            <div className="overflow-hidden">
+          {/* Massive headline — edge-to-edge */}
+          <div className="flex-1 flex flex-col justify-center">
+            <div>
               {["I design how", "systems get", "experienced."].map((line, i) => (
                 <div key={line} className="overflow-hidden leading-none">
                   <motion.h1
@@ -55,10 +55,11 @@ export default function Home() {
                     initial="hidden"
                     animate="visible"
                     variants={lineVariants}
-                    className="font-bold tracking-tight"
+                    className="font-bold"
                     style={{
-                      fontSize: "clamp(2.6rem, 9.8vw, 9rem)",
-                      lineHeight: 0.95,
+                      fontSize: "clamp(2.6rem, 9.2vw, 9.5rem)",
+                      lineHeight: 0.92,
+                      letterSpacing: "-0.02em",
                       color: i === 2 ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
                       fontStyle: i === 2 ? "italic" : "normal",
                     }}
@@ -70,33 +71,33 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bottom row: role + scroll */}
+          {/* Bottom row: role + CTA */}
           <motion.div
-            className="flex items-end justify-between pt-8"
+            className="flex items-end justify-between pt-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            transition={{ duration: 0.9, delay: 0.8 }}
           >
             <div className="flex flex-col gap-1">
               <p className="text-xs font-mono tracking-[0.2em] text-muted-foreground uppercase">
                 Learning · Service · UX Research
               </p>
-              <p className="text-xs font-mono tracking-[0.15em] text-muted-foreground/60 uppercase">
+              <p className="text-xs font-mono tracking-[0.15em] text-muted-foreground/50 uppercase">
                 Melbourne / NAARM
               </p>
             </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-8">
               <Link
                 href="/work"
-                className="text-xs font-mono tracking-[0.2em] text-foreground/70 hover:text-primary transition-colors border-b border-foreground/20 hover:border-primary pb-0.5 uppercase"
+                className="text-sm font-mono tracking-[0.15em] px-6 py-2.5 rounded-full border border-foreground/30 text-foreground/80 hover:border-primary hover:text-primary transition-colors duration-200 uppercase"
               >
-                View Work →
+                View Work
               </Link>
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-                className="text-muted-foreground/50"
+                className="text-muted-foreground/40 text-lg"
               >
                 ↓
               </motion.div>
@@ -115,20 +116,19 @@ export default function Home() {
         </motion.div>
 
         {/* ── What Drives the Work ── */}
-        <section className="flex flex-col gap-16 py-24">
+        <section className="flex flex-col gap-20 py-32">
           <motion.div
-            className="border-b border-border/60 pb-4"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-xs font-bold tracking-[0.22em] uppercase text-muted-foreground">
+            <p className="text-xs font-mono tracking-[0.3em] uppercase text-muted-foreground border-b border-border/30 pb-4">
               WHAT DRIVES THE WORK
-            </h2>
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+          <div className="flex flex-col divide-y divide-border/20">
             {[
               {
                 num: "01",
@@ -148,35 +148,40 @@ export default function Home() {
             ].map((item, i) => (
               <motion.div
                 key={item.num}
-                className="flex flex-col gap-4"
+                className="flex gap-12 md:gap-24 py-10 md:py-14 items-start"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.7, delay: i * 0.12 }}
+                transition={{ duration: 0.7, delay: i * 0.1 }}
               >
-                <h3 className="text-xl font-bold tracking-wider">
-                  {item.num} {item.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed text-sm">
-                  {item.body}
-                </p>
+                <span className="font-mono text-xs text-muted-foreground/50 tracking-widest pt-1 shrink-0 w-8">
+                  {item.num}
+                </span>
+                <div className="flex flex-col md:flex-row md:items-start md:gap-16 flex-1">
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight shrink-0 mb-3 md:mb-0 md:w-56">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed text-base max-w-xl">
+                    {item.body}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* ── Selected Work teaser ── */}
-        <section className="py-12 mb-12">
+        {/* ── Selected Work ── */}
+        <section className="pb-24">
           <motion.div
-            className="flex items-center justify-between border-t border-border/40 pt-8"
+            className="flex items-center justify-between pb-0 mb-0"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-xs font-mono tracking-[0.22em] uppercase text-muted-foreground">
+            <p className="text-xs font-mono tracking-[0.3em] uppercase text-muted-foreground">
               SELECTED WORK
-            </h2>
+            </p>
             <Link
               href="/work"
               className="text-xs font-mono tracking-[0.18em] text-muted-foreground hover:text-primary transition-colors uppercase"
@@ -185,7 +190,7 @@ export default function Home() {
             </Link>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-10">
+          <div className="flex flex-col divide-y divide-border/20 mt-8">
             {[
               {
                 href: "/work/memory-in-a-scent",
@@ -202,26 +207,31 @@ export default function Home() {
             ].map((p, i) => (
               <motion.div
                 key={p.href}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: i * 0.1 }}
+                transition={{ duration: 0.7, delay: i * 0.08 }}
               >
                 <Link
                   href={p.href}
-                  className="group flex flex-col gap-3 border border-border/30 p-8 hover:border-primary/40 transition-colors duration-300"
+                  className="group flex items-center justify-between py-8 md:py-10 gap-6"
                 >
-                  <div className="flex items-center gap-3 text-xs font-mono tracking-widest text-muted-foreground">
-                    <span>{p.num}</span>
-                    <span className="text-primary/50">·</span>
-                    <span>{p.tag}</span>
+                  <div className="flex items-baseline gap-6 md:gap-10 min-w-0">
+                    <span className="font-mono text-xs text-muted-foreground/50 tracking-widest shrink-0">
+                      {p.num}
+                    </span>
+                    <h3 className="text-2xl md:text-4xl font-bold tracking-tight group-hover:text-primary transition-colors duration-300 truncate">
+                      {p.title}
+                    </h3>
                   </div>
-                  <h3 className="text-xl font-bold tracking-tight group-hover:text-primary transition-colors duration-300">
-                    {p.title}
-                  </h3>
-                  <span className="text-xs font-mono text-muted-foreground/50 tracking-widest group-hover:text-primary/60 transition-colors">
-                    VIEW PROJECT →
-                  </span>
+                  <div className="flex items-center gap-6 shrink-0">
+                    <span className="hidden md:block text-xs font-mono tracking-widest text-muted-foreground/50 uppercase">
+                      {p.tag}
+                    </span>
+                    <span className="text-foreground/30 group-hover:text-primary transition-colors duration-300 text-xl">
+                      →
+                    </span>
+                  </div>
                 </Link>
               </motion.div>
             ))}

@@ -45,79 +45,80 @@ export default function Work() {
   return (
     <>
       <Helmet>
-        <title>Selected Work | Ashika Ramesh</title>
-        <meta name="description" content="Selected projects by Ashika Ramesh across learning design, service design, and UX research." />
-        <meta property="og:title" content="Selected Work | Ashika Ramesh" />
-        <meta property="og:description" content="Selected projects by Ashika Ramesh across learning design, service design, and UX research." />
+        <title>Selected Work | Ashima Ramesh</title>
+        <meta name="description" content="Selected projects by Ashima Ramesh across learning design, service design, and UX research." />
+        <meta property="og:title" content="Selected Work | Ashima Ramesh" />
+        <meta property="og:description" content="Selected projects by Ashima Ramesh across learning design, service design, and UX research." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ashikaramesh.com/work" />
+        <meta property="og:url" content="https://ashimaramesh.com/work" />
       </Helmet>
 
-      <div className="flex flex-col gap-12">
-        <header className="flex flex-col gap-8">
-          <div className="border-b border-border/60 pb-4">
-            <span className="text-sm font-bold tracking-[0.15em] uppercase text-muted-foreground">
-              SELECTED WORK
-            </span>
-          </div>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">PROJECTS</h1>
-        </header>
+      <div className="flex flex-col pt-8">
 
-        <div className="flex flex-col gap-16 md:gap-32 pb-16">
+        {/* Page header */}
+        <motion.div
+          className="border-b border-border/30 pb-6 mb-0"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <p className="text-xs font-mono tracking-[0.3em] uppercase text-muted-foreground">
+            SELECTED WORK
+          </p>
+        </motion.div>
+
+        {/* Project list */}
+        <div className="flex flex-col divide-y divide-border/20">
           {projects.map((project, index) => {
             const isClickable = !project.placeholder;
-            
-            const cardContent = (
-              <motion.article 
-                className={`group flex flex-col gap-6 w-full ${isClickable ? "cursor-pointer" : ""}`}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: index * 0.1 }}
-              >
-                {/* Project image / card */}
-                <div className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-border/30 relative bg-card">
-                  {project.id === "riverrenew-mataniko" ? (
-                    <img
-                      src="/riverrenew-hero.png"
-                      alt="RiverRenew Mataniko — riverbank restoration before and after"
-                      className="w-full h-full object-cover object-center"
-                    />
-                  ) : (
-                    <>
-                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent to-muted/10 opacity-50" />
-                      <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/30 font-mono text-sm tracking-widest">
-                        {project.placeholder ? "COMING SOON" : "IMAGE PLACEHOLDER"}
-                      </div>
-                    </>
-                  )}
-                </div>
 
-                <div className="flex flex-col gap-4 px-2">
-                  <div className="flex items-center gap-4 text-xs font-mono tracking-widest text-muted-foreground">
-                    <span>{project.number}</span>
-                    <span className="text-primary/70">·</span>
-                    <span>{project.categories}</span>
+            const rowContent = (
+              <motion.div
+                className={`group flex items-start justify-between gap-6 py-10 md:py-14 w-full ${isClickable ? "cursor-pointer" : "opacity-50"}`}
+                initial={{ opacity: isClickable ? 0 : 0.3, y: 20 }}
+                whileInView={{ opacity: isClickable ? 1 : 0.5, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.7, delay: index * 0.08 }}
+              >
+                <div className="flex items-baseline gap-6 md:gap-10 min-w-0 flex-1">
+                  <span className="font-mono text-xs text-muted-foreground/50 tracking-widest shrink-0 pt-1">
+                    {project.number}
+                  </span>
+                  <div className="flex flex-col gap-3 min-w-0">
+                    <h2
+                      className="font-bold tracking-tight group-hover:text-primary transition-colors duration-300"
+                      style={{ fontSize: "clamp(1.6rem, 4.5vw, 3.8rem)", lineHeight: 1.0 }}
+                    >
+                      {project.title}
+                    </h2>
+                    <p className="text-sm font-mono tracking-widest text-muted-foreground/60 uppercase hidden md:block">
+                      {project.categories}
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed text-sm max-w-xl mt-1 hidden md:block">
+                      {project.description}
+                    </p>
+                    {project.placeholder && (
+                      <span className="text-xs font-mono tracking-widest text-muted-foreground/30 uppercase">
+                        COMING SOON
+                      </span>
+                    )}
                   </div>
-                  
-                  <h2 className="text-2xl md:text-3xl font-bold tracking-tight group-hover:text-primary transition-colors duration-300">
-                    {project.title}
-                  </h2>
-                  
-                  <p className="text-foreground/80 md:text-lg leading-relaxed max-w-4xl">
-                    {project.description}
-                  </p>
                 </div>
-              </motion.article>
+                {isClickable && (
+                  <span className="text-foreground/25 group-hover:text-primary transition-colors duration-300 text-2xl shrink-0 pt-1">
+                    →
+                  </span>
+                )}
+              </motion.div>
             );
 
             return isClickable ? (
               <Link key={project.id} href={project.link} className="block">
-                {cardContent}
+                {rowContent}
               </Link>
             ) : (
               <div key={project.id}>
-                {cardContent}
+                {rowContent}
               </div>
             );
           })}
