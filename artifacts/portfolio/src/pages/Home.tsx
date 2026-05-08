@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 
 const MARQUEE_TEXT =
-  "LEARNING DESIGN · SERVICE DESIGN · UX RESEARCH · CO-DESIGN · SYSTEMS THINKING · MELBOURNE/NAARM · ";
+  "STAKEHOLDER MANAGEMENT · RESEARCH SYNTHESIS · PRESENTATION & FACILITATION · CROSS-FUNCTIONAL COLLABORATION · PROBLEM FRAMING · INTERPERSONAL COMMUNICATION · CRITICAL THINKING · INTERPRETATION & INSIGHT · ";
 
 function Marquee() {
   return (
@@ -45,7 +45,7 @@ export default function Home() {
       <div className="flex flex-col">
 
         {/* ── Full-viewport hero ── */}
-        <section className={`min-h-screen flex flex-col -mt-32 pt-40 pb-16 ${PAD}`}>
+        <section className={`flex flex-col -mt-32 pt-40 pb-20 ${PAD}`}>
 
           {/* Headline */}
           <div>
