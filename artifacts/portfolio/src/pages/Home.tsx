@@ -45,8 +45,18 @@ export default function Home() {
         {/* ── Full-viewport hero ── */}
         <section className="min-h-screen flex flex-col justify-between -mt-32 pt-32 pb-12 relative overflow-hidden">
 
-          {/* Massive headline — edge-to-edge */}
-          <div className="flex-1 flex flex-col justify-center">
+          {/* Top label */}
+          <motion.p
+            className="font-mono text-xs tracking-[0.25em] text-muted-foreground/70 uppercase pt-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+          >
+            Designer · Researcher · Melbourne / NAARM
+          </motion.p>
+
+          {/* Massive headline */}
+          <div className="flex-1 flex flex-col justify-center py-8">
             <div>
               {["I design how", "systems get", "experienced."].map((line, i) => (
                 <div key={line} className="overflow-hidden leading-none">
@@ -71,23 +81,18 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Bottom row: role + CTA */}
+          {/* Bottom: description + CTA */}
           <motion.div
-            className="flex items-end justify-between pt-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, delay: 0.8 }}
+            className="flex flex-col md:flex-row md:items-end justify-between gap-8 pt-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.65 }}
           >
-            <div className="flex flex-col gap-1">
-              <p className="text-xs font-mono tracking-[0.2em] text-muted-foreground uppercase">
-                Learning · Service · UX Research
-              </p>
-              <p className="text-xs font-mono tracking-[0.15em] text-muted-foreground/50 uppercase">
-                Melbourne / NAARM
-              </p>
-            </div>
+            <p className="text-sm md:text-base leading-relaxed text-muted-foreground max-w-xl">
+              Solving meaningful problems at the intersection of service design, learning design, and UX research. I bring rigour and empathy together to turn complex organisational challenges into experiences that are functional, human, and genuinely felt.
+            </p>
 
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-8 shrink-0">
               <Link
                 href="/work"
                 className="text-sm font-mono tracking-[0.15em] px-6 py-2.5 rounded-full border border-foreground/30 text-foreground/80 hover:border-primary hover:text-primary transition-colors duration-200 uppercase"
