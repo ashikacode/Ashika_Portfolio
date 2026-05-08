@@ -43,11 +43,11 @@ export default function Home() {
       <div className="flex flex-col">
 
         {/* ── Full-viewport hero ── */}
-        <section className="min-h-screen flex flex-col justify-between -mt-32 pt-32 pb-12 relative overflow-hidden">
+        <section className="min-h-screen flex flex-col -mt-32 pt-48 pb-16 relative overflow-hidden">
 
           {/* Top label */}
           <motion.p
-            className="font-mono text-xs tracking-[0.25em] text-muted-foreground/70 uppercase pt-4"
+            className="font-mono text-xs tracking-[0.25em] text-muted-foreground/70 uppercase mb-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -56,56 +56,46 @@ export default function Home() {
           </motion.p>
 
           {/* Massive headline */}
-          <div className="flex-1 flex flex-col justify-center py-8">
-            <div>
-              {["I design how", "systems get", "experienced."].map((line, i) => (
-                <div key={line} className="overflow-hidden leading-none">
-                  <motion.h1
-                    custom={i}
-                    initial="hidden"
-                    animate="visible"
-                    variants={lineVariants}
-                    className="font-bold"
-                    style={{
-                      fontSize: "clamp(2.6rem, 9.2vw, 9.5rem)",
-                      lineHeight: 0.92,
-                      letterSpacing: "-0.02em",
-                      color: i === 2 ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
-                      fontStyle: i === 2 ? "italic" : "normal",
-                    }}
-                  >
-                    {line}
-                  </motion.h1>
-                </div>
-              ))}
-            </div>
+          <div>
+            {["I design how", "systems get", "experienced."].map((line, i) => (
+              <div key={line} className="overflow-hidden leading-none">
+                <motion.h1
+                  custom={i}
+                  initial="hidden"
+                  animate="visible"
+                  variants={lineVariants}
+                  className="font-bold"
+                  style={{
+                    fontSize: "clamp(2.6rem, 9.2vw, 9.5rem)",
+                    lineHeight: 0.92,
+                    letterSpacing: "-0.02em",
+                    color: i === 2 ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
+                    fontStyle: i === 2 ? "italic" : "normal",
+                  }}
+                >
+                  {line}
+                </motion.h1>
+              </div>
+            ))}
           </div>
 
-          {/* Bottom: description + CTA */}
+          {/* Description + CTA — directly below headline */}
           <motion.div
-            className="flex flex-col md:flex-row md:items-end justify-between gap-8 pt-4"
+            className="flex flex-col md:flex-row md:items-start gap-8 mt-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.65 }}
           >
-            <p className="text-sm md:text-base leading-relaxed text-muted-foreground max-w-xl">
+            <p className="text-sm md:text-base leading-relaxed text-muted-foreground max-w-lg">
               Solving meaningful problems at the intersection of service design, learning design, and UX research. I bring rigour and empathy together to turn complex organisational challenges into experiences that are functional, human, and genuinely felt.
             </p>
-
-            <div className="flex items-center gap-8 shrink-0">
+            <div className="shrink-0">
               <Link
                 href="/work"
                 className="text-sm font-mono tracking-[0.15em] px-6 py-2.5 rounded-full border border-foreground/30 text-foreground/80 hover:border-primary hover:text-primary transition-colors duration-200 uppercase"
               >
                 View Work
               </Link>
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
-                className="text-muted-foreground/40 text-lg"
-              >
-                ↓
-              </motion.div>
             </div>
           </motion.div>
         </section>
