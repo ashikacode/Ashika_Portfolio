@@ -88,7 +88,7 @@ export default function Home() {
 
           {/* Description */}
           <motion.p
-            className="text-base md:text-lg leading-relaxed text-foreground/70 max-w-none mt-10"
+            className="text-sm md:text-base leading-loose text-foreground/60 max-w-2xl mt-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4 }}
