@@ -108,6 +108,16 @@ export default function MemoryInAScent() {
               </div>
               <div className="flex flex-col gap-8 leading-relaxed" style={{ color: "#0a0a0a" }}>
                 <p>The design journey involved moving from abstract concept to a functional and aesthetically balanced prototype.</p>
+
+                {/* Process / system diagram */}
+                <div className="rounded-sm overflow-hidden border" style={{ borderColor: "rgba(0,48,73,0.15)" }}>
+                  <img
+                    src="/memory-scent-process.png"
+                    alt="Memory in a Scent — system schematic and process flow diagram"
+                    className="w-full h-auto object-contain"
+                  />
+                </div>
+
                 <div className="flex flex-col gap-6">
                   {[
                     { label: "THE PROTOTYPE PIVOT", body: "Initial sketches explored cuboid, TV-like forms, but we pivoted to a combination of a wooden base and an acrylic lid to balance vintage nostalgia with modern precision." },
