@@ -47,10 +47,10 @@ export default function About() {
           </div>
           <div className="md:col-span-8 flex flex-col gap-6 text-lg leading-relaxed text-foreground/85">
             <p>
-              I design how systems get experienced — working at the intersection of learning design, service design, and UX research to turn complex organizational challenges into environments that are functional and genuinely felt.
+              I work across education, digital products, and services — translating complex systems into user-centred workflows that create measurable outcomes for both people and organisations. My practice spans research synthesis, service optimisation, and visual communication, grounded in evidence and shaped by cross-functional collaboration.
             </p>
             <p>
-              Based in Melbourne/NAARM, I bring a multidisciplinary background spanning design research, service improvement, and systems thinking. My work is grounded in evidence, shaped by empathy, and built with rigor.
+              With a multidisciplinary background in design research and systems thinking, I'm dedicated to driving positive sociocultural change and improving learning outcomes — especially for communities traditionally underserved by default experiences.
             </p>
           </div>
         </motion.div>
