@@ -61,9 +61,8 @@ export default function Home() {
 
             <div className="flex flex-col">
               {[
-                { text: "I design how",  isAccent: false },
-                { text: "systems get",   isAccent: false },
-                { text: "experienced.",  isAccent: true  },
+                { text: "I design how systems get", isAccent: false },
+                { text: "experienced.",             isAccent: true  },
               ].map(({ text, isAccent }, i) => (
                 <div key={text} className="overflow-hidden leading-none">
                   <motion.h1
@@ -73,8 +72,10 @@ export default function Home() {
                     variants={lineVariants}
                     className="font-bold"
                     style={{
-                      fontSize: "clamp(2.5rem, 8vw, 8rem)",
-                      lineHeight: 0.9,
+                      fontSize: isAccent
+                        ? "clamp(3rem, 11vw, 12rem)"
+                        : "clamp(2rem, 5.6vw, 6.5rem)",
+                      lineHeight: 0.92,
                       letterSpacing: "-0.01em",
                       color: isAccent ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
                       fontStyle: isAccent ? "italic" : "normal",
@@ -94,7 +95,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4 }}
           >
-            Designing at the intersection of service design, learning, and UX research — turning complex challenges into experiences that are functional, human, and genuinely felt.
+            Solving meaningful problems at the intersection of service design, learning design, and UX research. I bring rigour and empathy together to turn complex organisational challenges into experiences that are functional, human, and genuinely felt.
           </motion.p>
         </section>
 
