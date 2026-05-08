@@ -44,62 +44,71 @@ export default function Home() {
 
       <div className="flex flex-col">
 
-        {/* ── Full-viewport hero — true full width ── */}
-        <section className={`min-h-screen flex flex-col -mt-32 pt-32 pb-14 ${PAD}`}>
+        {/* ── Full-viewport hero ── */}
+        <section className="min-h-screen flex flex-col -mt-32 pt-32 pb-14">
 
-          {/* Top label */}
-          <motion.p
-            className="font-mono text-xs tracking-[0.25em] text-muted-foreground/70 uppercase mb-10"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-          >
-            Designer · Researcher · Melbourne / NAARM
-          </motion.p>
+          {/* Top label — padded */}
+          <div className={PAD}>
+            <motion.p
+              className="font-mono text-xs tracking-[0.25em] text-muted-foreground/70 uppercase mb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+            >
+              Designer · Researcher · Melbourne / NAARM
+            </motion.p>
+          </div>
 
-          {/* Massive headline */}
-          <div className="flex flex-col">
-            {["I design how", "systems get", "experienced."].map((line, i) => (
-              <div key={line} className="overflow-hidden leading-none">
+          {/* Massive headline — truly full-width, each line sized to fill viewport */}
+          <div className="flex flex-col overflow-hidden">
+            {[
+              { text: "I design how",  chars: 12 },
+              { text: "systems get",   chars: 11 },
+              { text: "experienced.",  chars: 12 },
+            ].map(({ text, chars }, i) => (
+              <div key={text} className="overflow-hidden leading-none w-full">
                 <motion.h1
                   custom={i}
                   initial="hidden"
                   animate="visible"
                   variants={lineVariants}
-                  className="font-bold"
+                  className="font-bold block w-full"
                   style={{
-                    fontSize: "clamp(2.8rem, 9.8vw, 10.5rem)",
-                    lineHeight: 0.92,
-                    letterSpacing: "-0.02em",
+                    fontSize: `calc(100vw / ${chars * 0.622})`,
+                    lineHeight: 0.9,
+                    letterSpacing: "0em",
                     color: i === 2 ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
                     fontStyle: i === 2 ? "italic" : "normal",
+                    whiteSpace: "nowrap",
                   }}
                 >
-                  {line}
+                  {text}
                 </motion.h1>
               </div>
             ))}
           </div>
 
-          {/* Description + CTA */}
-          <motion.div
-            className="flex flex-col md:flex-row md:items-end gap-8 pt-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.4 }}
-          >
-            <p className="text-sm md:text-base leading-relaxed text-foreground/70 max-w-xl">
-              Solving meaningful problems at the intersection of service design, learning design, and UX research. I bring rigour and empathy together to turn complex organisational challenges into experiences that are functional, human, and genuinely felt.
-            </p>
-            <div className="shrink-0">
-              <Link
-                href="/work"
-                className="text-sm font-mono tracking-[0.15em] px-6 py-2.5 rounded-full border border-foreground/30 text-foreground/80 hover:border-primary hover:text-primary transition-colors duration-200 uppercase"
-              >
-                View Work
-              </Link>
-            </div>
-          </motion.div>
+          {/* Description + CTA — padded */}
+          <div className={PAD}>
+            <motion.div
+              className="flex flex-col md:flex-row md:items-end gap-8 pt-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.4 }}
+            >
+              <p className="text-sm md:text-base leading-relaxed text-foreground/70 max-w-xl">
+                Solving meaningful problems at the intersection of service design, learning design, and UX research. I bring rigour and empathy together to turn complex organisational challenges into experiences that are functional, human, and genuinely felt.
+              </p>
+              <div className="shrink-0">
+                <Link
+                  href="/work"
+                  className="text-sm font-mono tracking-[0.15em] px-6 py-2.5 rounded-full border border-foreground/30 text-foreground/80 hover:border-primary hover:text-primary transition-colors duration-200 uppercase"
+                >
+                  View Work
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         </section>
 
         {/* ── Marquee — edge-to-edge ── */}
