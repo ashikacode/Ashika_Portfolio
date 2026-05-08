@@ -61,8 +61,8 @@ export default function Home() {
 
             <div className="flex flex-col">
               {[
-                { text: "I design how systems get", isAccent: false },
-                { text: "experienced.",             isAccent: true  },
+                { text: "I design how systems",  isAccent: false },
+                { text: "get experienced.",       isAccent: true  },
               ].map(({ text, isAccent }, i) => (
                 <div key={text} className="overflow-hidden leading-none">
                   <motion.h1
@@ -72,9 +72,7 @@ export default function Home() {
                     variants={lineVariants}
                     className="font-bold"
                     style={{
-                      fontSize: isAccent
-                        ? "clamp(3rem, 11vw, 12rem)"
-                        : "clamp(2rem, 5.6vw, 6.5rem)",
+                      fontSize: "clamp(2.5rem, 7vw, 8rem)",
                       lineHeight: 0.92,
                       letterSpacing: "-0.01em",
                       color: isAccent ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
