@@ -137,6 +137,12 @@ export default function MemoryInAScent() {
                   <strong style={{ color: "#003049" }}>Technical Execution:</strong> An Arduino Uno interfaces with an Adafruit TCS34725 RGB sensor to detect dominant photo colors. This data triggers ultrasonic piezoelectric atomizers to release a fine mist (10ml) of the essential oils.
                 </p>
               </div>
+
+              <img
+                src="/memory-scent-process.png"
+                alt="Memory in a Scent — system schematic and process flow diagram"
+                className="w-full h-auto object-contain"
+              />
             </section>
 
             {/* Future Model */}
@@ -178,15 +184,6 @@ export default function MemoryInAScent() {
               </dl>
             </div>
           </aside>
-
-          {/* ── Full-width process diagram ── */}
-          <div className="lg:col-span-12">
-            <img
-              src="/memory-scent-process.png"
-              alt="Memory in a Scent — system schematic and process flow diagram"
-              className="w-full h-auto object-contain"
-            />
-          </div>
 
         </div>
       </motion.article>
