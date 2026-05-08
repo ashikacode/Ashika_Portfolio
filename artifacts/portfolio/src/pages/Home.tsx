@@ -45,73 +45,57 @@ export default function Home() {
       <div className="flex flex-col">
 
         {/* ── Full-viewport hero ── */}
-        <section className="h-[100dvh] flex flex-col -mt-32 overflow-hidden">
+        <section className={`min-h-screen flex flex-col justify-between -mt-32 pt-40 pb-16 ${PAD}`}>
 
-          {/* Nav clearance */}
-          <div className="h-32 shrink-0" />
-
-          {/* Top label — padded */}
-          <div className={`${PAD} shrink-0 mb-4`}>
+          {/* Headline */}
+          <div>
+            {/* Top label */}
             <motion.p
-              className="font-mono text-xs tracking-[0.25em] text-muted-foreground/70 uppercase"
+              className="font-mono text-xs tracking-[0.25em] text-muted-foreground/70 uppercase mb-10"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.1 }}
             >
               Designer · Researcher · Melbourne / NAARM
             </motion.p>
+
+            <div className="flex flex-col">
+              {[
+                { text: "I design how",  isAccent: false },
+                { text: "systems get",   isAccent: false },
+                { text: "experienced.",  isAccent: true  },
+              ].map(({ text, isAccent }, i) => (
+                <div key={text} className="overflow-hidden leading-none">
+                  <motion.h1
+                    custom={i}
+                    initial="hidden"
+                    animate="visible"
+                    variants={lineVariants}
+                    className="font-bold"
+                    style={{
+                      fontSize: "clamp(2.5rem, 8vw, 8rem)",
+                      lineHeight: 0.9,
+                      letterSpacing: "-0.01em",
+                      color: isAccent ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
+                      fontStyle: isAccent ? "italic" : "normal",
+                    }}
+                  >
+                    {text}
+                  </motion.h1>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Massive headline — same size all lines, fills width, fits viewport */}
-          <div className="flex flex-col overflow-hidden shrink-0">
-            {[
-              { text: "I design how",  isAccent: false },
-              { text: "systems get",   isAccent: false },
-              { text: "experienced.",  isAccent: true  },
-            ].map(({ text, isAccent }, i) => (
-              <div key={text} className="overflow-hidden leading-none">
-                <motion.h1
-                  custom={i}
-                  initial="hidden"
-                  animate="visible"
-                  variants={lineVariants}
-                  className="font-bold block"
-                  style={{
-                    fontSize: "calc(100vw / 7.464)",
-                    lineHeight: 0.88,
-                    letterSpacing: "0em",
-                    color: isAccent ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
-                    fontStyle: isAccent ? "italic" : "normal",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  {text}
-                </motion.h1>
-              </div>
-            ))}
-          </div>
-
-          {/* Description + CTA — padded, pushed to bottom */}
-          <div className={`${PAD} mt-auto pb-10`}>
-            <motion.div
-              className="flex flex-col md:flex-row md:items-end gap-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.4 }}
-            >
-              <p className="text-lg md:text-xl leading-snug text-foreground/70 max-w-2xl">
-                Solving meaningful problems at the intersection of service design, learning design, and UX research. I bring rigour and empathy together to turn complex organisational challenges into experiences that are functional, human, and genuinely felt.
-              </p>
-              <div className="shrink-0">
-                <Link
-                  href="/work"
-                  className="text-sm font-mono tracking-[0.15em] px-6 py-2.5 rounded-full border border-foreground/30 text-foreground/80 hover:border-primary hover:text-primary transition-colors duration-200 uppercase"
-                >
-                  View Work
-                </Link>
-              </div>
-            </motion.div>
-          </div>
+          {/* Description — pushed to bottom */}
+          <motion.p
+            className="text-base md:text-lg leading-relaxed text-foreground/70 max-w-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.4 }}
+          >
+            Solving meaningful problems at the intersection of service design, learning design, and UX research. I bring rigour and empathy together to turn complex organisational challenges into experiences that are functional, human, and genuinely felt.
+          </motion.p>
         </section>
 
         {/* ── Marquee — edge-to-edge ── */}
