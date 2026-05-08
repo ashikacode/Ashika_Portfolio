@@ -2,7 +2,8 @@ modules = ["nodejs-24"]
 
 [deployment]
 router = "application"
-deploymentTarget = "autoscale"
+deploymentTarget = "static"
+publicDir = "artifacts/portfolio/dist/public"
 
 [deployment.postBuild]
 args = ["pnpm", "store", "prune"]
@@ -34,6 +35,10 @@ externalPort = 3001
 [[ports]]
 localPort = 8083
 externalPort = 3003
+
+[[ports]]
+localPort = 8084
+externalPort = 3002
 
 [[ports]]
 localPort = 21113
