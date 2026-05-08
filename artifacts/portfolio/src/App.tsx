@@ -20,6 +20,7 @@ const queryClient = new QueryClient();
 function Router() {
   const [location] = useLocation();
   const isCaseStudy = /^\/work\/.+/.test(location);
+  const isHome = location === "/";
 
   return (
     <div
@@ -32,7 +33,7 @@ function Router() {
     >
       <Cursor />
       <Header />
-      <main className="flex-1 w-full max-w-6xl mx-auto px-6 md:px-12 lg:px-20 pt-32 pb-16">
+      <main className={`flex-1 w-full pt-32 pb-16 ${isHome ? "" : "max-w-6xl mx-auto px-6 md:px-12 lg:px-20"}`}>
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/work" component={Work} />
