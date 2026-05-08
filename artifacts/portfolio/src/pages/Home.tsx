@@ -45,12 +45,15 @@ export default function Home() {
       <div className="flex flex-col">
 
         {/* ── Full-viewport hero ── */}
-        <section className="min-h-screen flex flex-col -mt-32 pt-32 pb-14">
+        <section className="h-[100dvh] flex flex-col -mt-32 overflow-hidden">
+
+          {/* Nav clearance */}
+          <div className="h-32 shrink-0" />
 
           {/* Top label — padded */}
-          <div className={PAD}>
+          <div className={`${PAD} shrink-0 mb-4`}>
             <motion.p
-              className="font-mono text-xs tracking-[0.25em] text-muted-foreground/70 uppercase mb-8"
+              className="font-mono text-xs tracking-[0.25em] text-muted-foreground/70 uppercase"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.1 }}
@@ -59,26 +62,26 @@ export default function Home() {
             </motion.p>
           </div>
 
-          {/* Massive headline — truly full-width, each line sized to fill viewport */}
-          <div className="flex flex-col overflow-hidden">
+          {/* Massive headline — same size all lines, fills width, fits viewport */}
+          <div className="flex flex-col overflow-hidden shrink-0">
             {[
-              { text: "I design how",  chars: 12 },
-              { text: "systems get",   chars: 11 },
-              { text: "experienced.",  chars: 12 },
-            ].map(({ text, chars }, i) => (
-              <div key={text} className="overflow-hidden leading-none w-full">
+              { text: "I design how",  isAccent: false },
+              { text: "systems get",   isAccent: false },
+              { text: "experienced.",  isAccent: true  },
+            ].map(({ text, isAccent }, i) => (
+              <div key={text} className="overflow-hidden leading-none">
                 <motion.h1
                   custom={i}
                   initial="hidden"
                   animate="visible"
                   variants={lineVariants}
-                  className="font-bold block w-full"
+                  className="font-bold block"
                   style={{
-                    fontSize: `calc(100vw / ${chars * 0.622})`,
-                    lineHeight: 0.9,
+                    fontSize: "calc(100vw / 7.464)",
+                    lineHeight: 0.88,
                     letterSpacing: "0em",
-                    color: i === 2 ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
-                    fontStyle: i === 2 ? "italic" : "normal",
+                    color: isAccent ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
+                    fontStyle: isAccent ? "italic" : "normal",
                     whiteSpace: "nowrap",
                   }}
                 >
@@ -88,15 +91,15 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Description + CTA — padded */}
-          <div className={PAD}>
+          {/* Description + CTA — padded, pushed to bottom */}
+          <div className={`${PAD} mt-auto pb-10`}>
             <motion.div
-              className="flex flex-col md:flex-row md:items-end gap-8 pt-10"
+              className="flex flex-col md:flex-row md:items-end gap-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.4 }}
             >
-              <p className="text-sm md:text-base leading-relaxed text-foreground/70 max-w-xl">
+              <p className="text-lg md:text-xl leading-snug text-foreground/70 max-w-2xl">
                 Solving meaningful problems at the intersection of service design, learning design, and UX research. I bring rigour and empathy together to turn complex organisational challenges into experiences that are functional, human, and genuinely felt.
               </p>
               <div className="shrink-0">
