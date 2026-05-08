@@ -60,29 +60,46 @@ export default function Home() {
             </motion.p>
 
             <div className="flex flex-col">
-              {[
-                { text: "I design how systems",  isAccent: false },
-                { text: "get experienced.",       isAccent: true  },
-              ].map(({ text, isAccent }, i) => (
-                <div key={text} className="overflow-hidden leading-none">
-                  <motion.h1
-                    custom={i}
-                    initial="hidden"
-                    animate="visible"
-                    variants={lineVariants}
-                    className="font-bold"
-                    style={{
-                      fontSize: "clamp(2.5rem, 7vw, 8rem)",
-                      lineHeight: 0.92,
-                      letterSpacing: "-0.01em",
-                      color: isAccent ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
-                      fontStyle: isAccent ? "italic" : "normal",
-                    }}
-                  >
-                    {text}
-                  </motion.h1>
-                </div>
-              ))}
+              {/* Line 1 */}
+              <div className="overflow-hidden leading-none">
+                <motion.h1
+                  custom={0}
+                  initial="hidden"
+                  animate="visible"
+                  variants={lineVariants}
+                  className="font-bold uppercase"
+                  style={{
+                    fontSize: "clamp(2rem, 6.2vw, 7rem)",
+                    lineHeight: 0.92,
+                    letterSpacing: "0.02em",
+                    color: "hsl(40 33% 93%)",
+                  }}
+                >
+                  I design how systems
+                </motion.h1>
+              </div>
+
+              {/* Line 2 — "GET" cream, "EXPERIENCED." teal */}
+              <div className="overflow-hidden leading-none">
+                <motion.h1
+                  custom={1}
+                  initial="hidden"
+                  animate="visible"
+                  variants={lineVariants}
+                  className="font-bold uppercase"
+                  style={{
+                    fontSize: "clamp(2rem, 6.2vw, 7rem)",
+                    lineHeight: 0.92,
+                    letterSpacing: "0.02em",
+                    color: "hsl(40 33% 93%)",
+                  }}
+                >
+                  get{" "}
+                  <span style={{ color: "hsl(178 60% 50%)" }}>
+                    experienced.
+                  </span>
+                </motion.h1>
+              </div>
             </div>
           </div>
 
