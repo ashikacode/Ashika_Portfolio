@@ -131,6 +131,20 @@ export default function MemoryInAScent() {
                   THE PORTABLE OLFACTORY DISPLAY
                 </h2>
               </div>
+
+              {/* Final prototype photo — hero image */}
+              <figure className="flex flex-col gap-3">
+                <img
+                  src="/prototype-final.png"
+                  alt="Memory in a Scent — final physical prototype: acrylic chamber on wooden base with printed memory photographs"
+                  className="w-full h-auto object-contain"
+                  style={{ maxHeight: "70vh" }}
+                />
+                <figcaption className="text-xs font-mono tracking-wider text-center" style={{ color: "#003049", opacity: 0.65 }}>
+                  Final prototype — acrylic scent chamber, laser-cut wooden base, ultrasonic atomiser, and memory photographs
+                </figcaption>
+              </figure>
+
               <div className="flex flex-col gap-5 leading-relaxed" style={{ color: "#0a0a0a" }}>
                 <p>The final prototype is a hybrid device that uses color analysis to specific scent profiles.</p>
                 <p>
