@@ -45,7 +45,7 @@ export default function Home() {
       <div className="flex flex-col">
 
         {/* ── Full-viewport hero ── */}
-        <section className={`min-h-screen flex flex-col justify-between -mt-32 pt-40 pb-16 ${PAD}`}>
+        <section className={`min-h-screen flex flex-col -mt-32 pt-40 pb-16 ${PAD}`}>
 
           {/* Headline */}
           <div>
@@ -87,14 +87,14 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Description — pushed to bottom */}
+          {/* Description */}
           <motion.p
-            className="text-base md:text-lg leading-relaxed text-foreground/70 max-w-2xl"
+            className="text-base md:text-lg leading-relaxed text-foreground/70 max-w-none mt-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.4 }}
           >
-            Solving meaningful problems at the intersection of service design, learning design, and UX research. I bring rigour and empathy together to turn complex organisational challenges into experiences that are functional, human, and genuinely felt.
+            Designing at the intersection of service design, learning, and UX research — turning complex challenges into experiences that are functional, human, and genuinely felt.
           </motion.p>
         </section>
 
