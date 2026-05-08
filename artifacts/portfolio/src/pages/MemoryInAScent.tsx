@@ -109,15 +109,6 @@ export default function MemoryInAScent() {
               <div className="flex flex-col gap-8 leading-relaxed" style={{ color: "#0a0a0a" }}>
                 <p>The design journey involved moving from abstract concept to a functional and aesthetically balanced prototype.</p>
 
-                {/* Process / system diagram */}
-                <div className="rounded-sm overflow-hidden border" style={{ borderColor: "rgba(0,48,73,0.15)" }}>
-                  <img
-                    src="/memory-scent-process.png"
-                    alt="Memory in a Scent — system schematic and process flow diagram"
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
-
                 <div className="flex flex-col gap-6">
                   {[
                     { label: "THE PROTOTYPE PIVOT", body: "Initial sketches explored cuboid, TV-like forms, but we pivoted to a combination of a wooden base and an acrylic lid to balance vintage nostalgia with modern precision." },
@@ -147,49 +138,12 @@ export default function MemoryInAScent() {
                 </p>
               </div>
 
-              {/* Process Flow */}
-              <div className="mt-6 p-8 rounded-sm" style={cs.box}>
-                <h3 className="text-xs font-mono tracking-widest mb-8 text-center" style={{ color: "#fcf5e9", opacity: 0.5 }}>
-                  PROCESS FLOW
-                </h3>
-                <div className="flex flex-col md:flex-row items-center justify-between gap-3 font-mono text-xs text-center">
-                  {["INSERT PHOTO", "RGB SENSOR READS", "COLOUR ANALYSIS"].map((step, i) => (
-                    <div key={step} className="contents">
-                      <div className="px-4 py-3 rounded-sm w-full md:w-auto" style={{ backgroundColor: "rgba(252,245,233,0.1)", color: "#fcf5e9", border: "1px solid rgba(252,245,233,0.2)" }}>
-                        {step}
-                      </div>
-                      <div style={{ color: "#fcf5e9", opacity: 0.4 }}>→</div>
-                    </div>
-                  ))}
-                  <div className="flex flex-col gap-3 w-full md:w-auto">
-                    <div className="px-4 py-3 rounded-sm" style={{ backgroundColor: "rgba(252,245,233,0.2)", color: "#fcf5e9", border: "1px solid rgba(252,245,233,0.4)" }}>
-                      SCENT DATABASE MATCH
-                    </div>
-                    <div className="text-center text-[10px] p-2 rounded-sm" style={{ color: "#fcf5e9", opacity: 0.4, border: "1px dashed rgba(252,245,233,0.2)" }}>
-                      No match: No scent released
-                    </div>
-                  </div>
-                  <div style={{ color: "#fcf5e9", opacity: 0.4 }}>→</div>
-                  <div className="px-4 py-3 rounded-sm font-bold w-full md:w-auto" style={{ backgroundColor: "#fcf5e9", color: "#003049" }}>
-                    ATOMIZER FIRES
-                  </div>
-                </div>
-
-                <div className="mt-10 flex flex-col items-center gap-4">
-                  <span className="text-[10px] uppercase tracking-widest" style={{ color: "#fcf5e9", opacity: 0.4 }}>SCENT OUTPUTS</span>
-                  <div className="flex gap-4">
-                    {[
-                      { label: "Orange", color: "#f97316" },
-                      { label: "Lavender", color: "#a855f7" },
-                      { label: "Tobacco", color: "#92400e" },
-                    ].map((s) => (
-                      <span key={s.label} className="px-4 py-1.5 rounded-full text-xs tracking-wider" style={{ border: `1px solid ${s.color}60`, color: s.color, backgroundColor: `${s.color}18` }}>
-                        {s.label}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              {/* Process diagram image */}
+              <img
+                src="/memory-scent-process.png"
+                alt="Memory in a Scent — system schematic and process flow diagram"
+                className="w-full h-auto object-contain mt-6"
+              />
             </section>
 
             {/* Future Model */}
