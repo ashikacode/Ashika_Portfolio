@@ -142,7 +142,8 @@ export default function MemoryInAScent() {
               <img
                 src="/memory-scent-process.png"
                 alt="Memory in a Scent — system schematic and process flow diagram"
-                className="w-full h-auto object-contain mt-6"
+                className="w-full object-contain mt-6"
+                style={{ minHeight: "520px" }}
               />
             </section>
 
