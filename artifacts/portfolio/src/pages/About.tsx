@@ -45,9 +45,7 @@ export default function About() {
             </div>
           </div>
           <div className="md:col-span-8 flex flex-col gap-6 text-lg leading-relaxed text-foreground/85">
-            <p>
-              I work across education, digital products, and services — translating complex systems into user-centred workflows that create measurable outcomes for both people and organisations. My practice spans research synthesis, service optimisation, and visual communication, grounded in evidence and shaped by cross-functional collaboration.
-            </p>
+            <p>I work across education, digital products, and services translating complex systems into user-centred workflows that create measurable outcomes for both people and organisations. My practice spans research synthesis, service optimisation, and visual communication, grounded in evidence and shaped by cross-functional collaboration.</p>
             <p>With a multidisciplinary background in design research and systems thinking, I'm dedicated to driving positive sociocultural change and improving learning outcomes especially for communities traditionally underserved by default experiences.</p>
           </div>
         </motion.div>
