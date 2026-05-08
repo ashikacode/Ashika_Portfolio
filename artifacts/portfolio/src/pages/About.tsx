@@ -18,7 +18,6 @@ export default function About() {
         <title>About | Ashika Ramesh</title>
         <meta name="description" content="Ashika Ramesh is a Learning, Service and UX Research designer based in Melbourne/NAARM. RMIT Master of Design Innovation and Technology." />
       </Helmet>
-
       <motion.div
         className="flex flex-col gap-20 pb-24"
         initial="hidden"
@@ -49,9 +48,7 @@ export default function About() {
             <p>
               I work across education, digital products, and services — translating complex systems into user-centred workflows that create measurable outcomes for both people and organisations. My practice spans research synthesis, service optimisation, and visual communication, grounded in evidence and shaped by cross-functional collaboration.
             </p>
-            <p>
-              With a multidisciplinary background in design research and systems thinking, I'm dedicated to driving positive sociocultural change and improving learning outcomes — especially for communities traditionally underserved by default experiences.
-            </p>
+            <p>With a multidisciplinary background in design research and systems thinking, I'm dedicated to driving positive sociocultural change and improving learning outcomes especially for communities traditionally underserved by default experiences.</p>
           </div>
         </motion.div>
 
