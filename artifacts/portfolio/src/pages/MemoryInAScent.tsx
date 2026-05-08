@@ -175,6 +175,38 @@ export default function MemoryInAScent() {
               </div>
             </section>
 
+            {/* Prototype Development */}
+            <section className="flex flex-col gap-8">
+              <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
+                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={cs.label}>
+                  PROTOTYPE DEVELOPMENT
+                </h2>
+              </div>
+              <p className="leading-relaxed" style={{ color: "#0a0a0a" }}>
+                Iterating through material and structural decisions — from initial laser-cut wooden enclosures to the acrylic scent chamber — each build stage refined the device's form, fit, and function.
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { src: "/prototype-build-1.png", caption: "Clear acrylic lid test-fitted over the laser-cut wooden base" },
+                  { src: "/prototype-build-2.png", caption: "Photo slot mechanism — sliding the memory card into the base" },
+                  { src: "/prototype-build-3.png", caption: "Structural prototype showing the two-chamber wooden form" },
+                  { src: "/prototype-build-4.png", caption: "Assembly test with acrylic chamber, dimension annotations visible" },
+                ].map(({ src, caption }) => (
+                  <figure key={src} className="flex flex-col gap-2">
+                    <img
+                      src={src}
+                      alt={caption}
+                      className="w-full h-auto object-cover aspect-square"
+                      style={{ filter: "brightness(0.97)" }}
+                    />
+                    <figcaption className="text-xs font-mono tracking-wider" style={{ color: "#003049", opacity: 0.6 }}>
+                      {caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </section>
+
           </div>
 
           {/* ── Sidebar ── */}
