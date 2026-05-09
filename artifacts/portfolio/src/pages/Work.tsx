@@ -60,10 +60,10 @@ export default function Work() {
   return (
     <>
       <Helmet>
-        <title>Selected Work | Ashima Ramesh</title>
-        <meta name="description" content="Selected projects by Ashima Ramesh across learning design, service design, and UX research." />
-        <meta property="og:title" content="Selected Work | Ashima Ramesh" />
-        <meta property="og:description" content="Selected projects by Ashima Ramesh across learning design, service design, and UX research." />
+        <title>Selected Work | Ashika Ramesh</title>
+        <meta name="description" content="Selected projects by Ashika Ramesh across learning design, service design, and UX research." />
+        <meta property="og:title" content="Selected Work | Ashika Ramesh" />
+        <meta property="og:description" content="Selected projects by Ashika Ramesh across learning design, service design, and UX research." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ashimaramesh.com/work" />
       </Helmet>

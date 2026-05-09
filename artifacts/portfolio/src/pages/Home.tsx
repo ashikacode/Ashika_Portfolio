@@ -86,10 +86,10 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Ashima Ramesh | Learning & Service Designer</title>
-        <meta name="description" content="Portfolio of Ashima Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
-        <meta property="og:title" content="Ashima Ramesh | Learning & Service Designer" />
-        <meta property="og:description" content="Portfolio of Ashima Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
+        <title>Ashika Ramesh | Learning & Service Designer</title>
+        <meta name="description" content="Portfolio of Ashika Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
+        <meta property="og:title" content="Ashika Ramesh | Learning & Service Designer" />
+        <meta property="og:description" content="Portfolio of Ashika Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://ashimaramesh.com/" />
       </Helmet>

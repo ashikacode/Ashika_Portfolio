@@ -30,7 +30,7 @@ export default function Header() {
         <Link href="/" className="z-50 block transition-opacity hover:opacity-75">
           <img
             src={logoPath}
-            alt="Ashima Ramesh Logo"
+            alt="Ashika Ramesh Logo"
             className="w-32 md:w-[180px] h-auto object-contain"
             data-testid="header-logo"
           />

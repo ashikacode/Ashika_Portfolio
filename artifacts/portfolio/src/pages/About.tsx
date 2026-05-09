@@ -111,8 +111,8 @@ export default function About() {
   return (
     <>
       <Helmet>
-        <title>About | Ashima Ramesh</title>
-        <meta name="description" content="Ashima Ramesh is a Learning, Service and UX Research designer based in Melbourne/NAARM. RMIT Master of Design Innovation and Technology." />
+        <title>About | Ashika Ramesh</title>
+        <meta name="description" content="Ashika Ramesh is a Learning, Service and UX Research designer based in Melbourne/NAARM. RMIT Master of Design Innovation and Technology." />
       </Helmet>
 
       <div className="flex flex-col gap-0 pb-24">
@@ -143,7 +143,7 @@ export default function About() {
             <div className="aspect-[4/5] overflow-hidden">
               <img
                 src="/ashika-photo.png"
-                alt="Ashima Ramesh"
+                alt="Ashika Ramesh"
                 className="w-full h-full object-cover object-top grayscale-[15%]"
                 width={600}
                 height={750}
@@ -157,12 +157,6 @@ export default function About() {
               <p className="text-xs font-mono tracking-[0.25em] text-muted-foreground/60 uppercase">
                 Designer · Researcher
               </p>
-              <h2
-                className="font-bold uppercase leading-none"
-                style={{ fontSize: "clamp(2rem, 5vw, 5rem)", letterSpacing: "0.01em" }}
-              >
-                Ashima Ramesh
-              </h2>
               <p className="text-xs font-mono tracking-[0.2em] text-primary uppercase">
                 Melbourne / NAARM
               </p>

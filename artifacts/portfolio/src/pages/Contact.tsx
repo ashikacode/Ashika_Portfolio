@@ -23,7 +23,7 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>Contact | Ashima Ramesh</title>
+        <title>Contact | Ashika Ramesh</title>
         <meta name="description" content="Get in touch with Ashika Ramesh — open for collaborations, research partnerships, and new opportunities." />
       </Helmet>
 

@@ -1,8 +1,8 @@
-# Ashima Ramesh Portfolio
+# Ashika Ramesh Portfolio
 
 ## Overview
 
-A portfolio website for Ashima Ramesh — Learning, Service & UX Research designer based in Melbourne/NAARM.
+A portfolio website for Ashika Ramesh — Learning, Service & UX Research designer based in Melbourne/NAARM.
 
 ## Stack
 
