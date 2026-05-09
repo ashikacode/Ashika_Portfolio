@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Link } from "wouter";
+import { useState } from "react";
 
 const projects = [
   {
@@ -8,40 +9,54 @@ const projects = [
     number: "01",
     categories: "LEARNING DESIGNER · HEALTH EDUCATION · SERVICE DESIGN",
     title: "DICARE",
-    description: "An educational game that reframes diabetes self-management for young kids — turning clinical complexity into play.",
     link: "/work",
-    placeholder: true
+    placeholder: true,
+    image: null,
   },
   {
     id: "memory-in-a-scent",
     number: "02",
     categories: "SPECULATIVE DESIGN · HEALTH · ARDUINO",
     title: "MEMORY IN A SCENT",
-    description: "A portable device that uses scent to unlock memory, designed for the people who need it most.",
     link: "/work/memory-in-a-scent",
-    placeholder: false
+    placeholder: false,
+    image: "/prototype-final.png",
   },
   {
     id: "riverrenew-mataniko",
     number: "03",
     categories: "SUSTAINABLE SYSTEMS · NATURE-BASED SOLUTIONS",
     title: "RIVER RENEW MATANIKO",
-    description: "A nature-based riverbank restoration system designed to stabilize riverbanks and purify water for Honiara's most vulnerable settlements.",
     link: "/work/riverrenew-mataniko",
-    placeholder: false
+    placeholder: false,
+    image: "/riverrenew-hero.png",
   },
   {
     id: "third-space",
     number: "04",
     categories: "SERVICE DESIGN · CO-DESIGN",
     title: "THIRD SPACE",
-    description: "A card game to co-design a local communities.",
     link: "/work",
-    placeholder: true
-  }
+    placeholder: true,
+    image: null,
+  },
 ];
 
 export default function Work() {
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const x = useSpring(rawX, { damping: 22, stiffness: 140 });
+  const y = useSpring(rawY, { damping: 22, stiffness: 140 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    rawX.set(e.clientX);
+    rawY.set(e.clientY);
+  };
+
+  const activeImage = hoveredId ? (projects.find((p) => p.id === hoveredId)?.image ?? null) : null;
+
   return (
     <>
       <Helmet>
@@ -53,8 +68,39 @@ export default function Work() {
         <meta property="og:url" content="https://ashimaramesh.com/work" />
       </Helmet>
 
-      <div className="flex flex-col pt-8">
+      {/* Floating image preview — fixed so it escapes layout */}
+      <motion.div
+        className="fixed pointer-events-none z-40 overflow-hidden"
+        style={{
+          x,
+          y,
+          translateX: "-50%",
+          translateY: "-115%",
+          width: 300,
+          height: 220,
+        }}
+        animate={{
+          opacity: activeImage ? 1 : 0,
+          scale: activeImage ? 1 : 0.88,
+        }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+      >
+        {projects.map(
+          (p) =>
+            p.image && (
+              <motion.img
+                key={p.id}
+                src={p.image}
+                alt={p.title}
+                className="absolute inset-0 w-full h-full object-cover"
+                animate={{ opacity: hoveredId === p.id ? 1 : 0 }}
+                transition={{ duration: 0.15 }}
+              />
+            ),
+        )}
+      </motion.div>
 
+      <div className="flex flex-col pt-8" onMouseMove={handleMouseMove}>
         {/* Page header */}
         <motion.div
           className="border-b border-border/30 pb-6 mb-0"
@@ -67,35 +113,48 @@ export default function Work() {
           </p>
         </motion.div>
 
-        {/* Project list */}
-        <div className="flex flex-col divide-y divide-border/20">
+        {/* Project rows */}
+        <div className="flex flex-col">
           {projects.map((project, index) => {
             const isClickable = !project.placeholder;
 
             const rowContent = (
               <motion.div
-                className={`group flex items-start justify-between gap-6 py-10 md:py-14 w-full ${isClickable ? "cursor-pointer" : "opacity-50"}`}
-                initial={{ opacity: isClickable ? 0 : 0.3, y: 20 }}
-                whileInView={{ opacity: isClickable ? 1 : 0.5, y: 0 }}
+                className={`group flex items-center justify-between gap-6 py-10 md:py-14 w-full border-b border-border/20 ${
+                  isClickable ? "cursor-none" : "opacity-40"
+                }`}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{
+                  opacity: isClickable ? 1 : 0.4,
+                  y: 0,
+                }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.7, delay: index * 0.08 }}
+                transition={{ duration: 0.7, delay: index * 0.09 }}
+                onMouseEnter={() => isClickable && setHoveredId(project.id)}
+                onMouseLeave={() => setHoveredId(null)}
               >
+                {/* Left: number + title + categories */}
                 <div className="flex items-baseline gap-6 md:gap-10 min-w-0 flex-1">
-                  <span className="font-mono text-xs text-muted-foreground/50 tracking-widest shrink-0 pt-1">
+                  <span className="font-mono text-xs text-muted-foreground/40 tracking-widest shrink-0 w-6">
                     {project.number}
                   </span>
-                  <div className="flex flex-col gap-3 min-w-0">
+                  <div className="flex flex-col gap-2 min-w-0">
                     <h2
-                      className="font-bold tracking-tight group-hover:text-primary transition-colors duration-300"
-                      style={{ fontSize: "clamp(1.6rem, 4.5vw, 3.8rem)", lineHeight: 1.0 }}
+                      className="font-bold tracking-tight transition-colors duration-300"
+                      style={{
+                        fontSize: "clamp(1.5rem, 4vw, 3.5rem)",
+                        lineHeight: 1.0,
+                        color:
+                          hoveredId === project.id
+                            ? "hsl(178 60% 50%)"
+                            : "hsl(40 33% 93%)",
+                        transition: "color 0.3s ease",
+                      }}
                     >
                       {project.title}
                     </h2>
-                    <p className="text-sm font-mono tracking-widest text-muted-foreground/60 uppercase hidden md:block">
+                    <p className="text-xs font-mono tracking-widest text-muted-foreground/50 uppercase hidden md:block">
                       {project.categories}
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed text-sm max-w-xl mt-1 hidden md:block">
-                      {project.description}
                     </p>
                     {project.placeholder && (
                       <span className="text-xs font-mono tracking-widest text-muted-foreground/30 uppercase">
@@ -104,10 +163,22 @@ export default function Work() {
                     )}
                   </div>
                 </div>
+
+                {/* Right: arrow */}
                 {isClickable && (
-                  <span className="text-foreground/25 group-hover:text-primary transition-colors duration-300 text-2xl shrink-0 pt-1">
+                  <motion.span
+                    className="text-foreground/25 text-2xl shrink-0 transition-colors duration-300"
+                    style={{
+                      color:
+                        hoveredId === project.id
+                          ? "hsl(178 60% 50%)"
+                          : undefined,
+                    }}
+                    animate={{ x: hoveredId === project.id ? 8 : 0 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                  >
                     →
-                  </span>
+                  </motion.span>
                 )}
               </motion.div>
             );
@@ -117,9 +188,7 @@ export default function Work() {
                 {rowContent}
               </Link>
             ) : (
-              <div key={project.id}>
-                {rowContent}
-              </div>
+              <div key={project.id}>{rowContent}</div>
             );
           })}
         </div>
