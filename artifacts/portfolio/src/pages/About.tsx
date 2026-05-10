@@ -155,9 +155,6 @@ export default function About() {
           {/* Bio — right column */}
           <div className="md:col-span-8 flex flex-col justify-end p-0 md:pl-14 py-14">
             <div className="flex flex-col gap-3 mb-10">
-              <p className="text-xs font-mono tracking-[0.25em] text-muted-foreground/60 uppercase">
-                Designer · Researcher
-              </p>
               <p className="text-xs font-mono tracking-[0.2em] text-primary uppercase">
                 Melbourne / NAARM
               </p>
