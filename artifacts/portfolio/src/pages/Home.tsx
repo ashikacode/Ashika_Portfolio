@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion, useMotionValue, useSpring } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { Link } from "wouter";
 import { useState } from "react";
 
@@ -20,12 +21,12 @@ function Marquee() {
   );
 }
 
-const lineVariants = {
+const lineVariants: Variants = {
   hidden: { opacity: 0, y: 80 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: i * 0.14 },
+    transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const, delay: i * 0.14 },
   }),
 };
 

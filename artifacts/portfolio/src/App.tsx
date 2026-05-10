@@ -1,5 +1,6 @@
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { AnimatePresence, motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -18,10 +19,10 @@ import RiverRenewMataniko from "@/pages/RiverRenewMataniko";
 
 const queryClient = new QueryClient();
 
-const pageVariants = {
+const pageVariants: Variants = {
   initial: { opacity: 0, y: 18 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
-  exit:    { opacity: 0, y: -10, transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] } },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const } },
+  exit:    { opacity: 0, y: -10, transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
 function Router() {

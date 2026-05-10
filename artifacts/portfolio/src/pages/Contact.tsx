@@ -1,5 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import { useState } from "react";
 
 const socials = [
@@ -8,12 +9,12 @@ const socials = [
   { label: "Instagram", href: "https://www.instagram.com/tinte.it/" },
 ];
 
-const lineVariants = {
+const lineVariants: Variants = {
   hidden: { opacity: 0, y: 60 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: i * 0.12 },
+    transition: { duration: 1.0, ease: [0.16, 1, 0.3, 1] as const, delay: i * 0.12 },
   }),
 };
 
