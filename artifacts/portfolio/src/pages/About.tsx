@@ -137,11 +137,11 @@ export default function About() {
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-12 gap-0 mt-0"
+          className="grid grid-cols-1 md:grid-cols-12 gap-0 mt-0 items-center"
         >
-          {/* Photo — full bleed left column */}
-          <div className="md:col-span-4 border-b md:border-b-0 md:border-r border-border/20">
-            <div className="aspect-[4/5] overflow-hidden">
+          {/* Photo — centered in left column */}
+          <div className="md:col-span-4 border-b md:border-b-0 md:border-r border-border/20 flex items-center justify-center py-14">
+            <div className="w-full overflow-hidden" style={{ maxHeight: "420px" }}>
               <img
                 src="/ashika-photo.png"
                 alt="Ashika Ramesh"
@@ -152,15 +152,9 @@ export default function About() {
             </div>
           </div>
 
-          {/* Bio — right column */}
-          <div className="md:col-span-8 flex flex-col justify-end p-0 md:pl-14 py-14">
-            <div className="flex flex-col gap-3 mb-10">
-              <p className="text-xs font-mono tracking-[0.2em] text-primary uppercase">
-                Melbourne / NAARM
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-5 text-base leading-loose text-foreground/70 max-w-xl border-t border-border/20 pt-10">
+          {/* Bio — right column, vertically centered */}
+          <div className="md:col-span-8 flex flex-col justify-center p-0 md:pl-14 py-14">
+            <div className="flex flex-col gap-5 text-base leading-loose text-foreground/70 max-w-xl">
               <p>
                 I work across education, digital products, and services — translating complex systems into user-centred workflows that create measurable outcomes for both people and organisations. My practice spans research synthesis, service optimisation, and visual communication, grounded in evidence and shaped by cross-functional collaboration.
               </p>
