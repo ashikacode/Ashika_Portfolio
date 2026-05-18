@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { Link } from "wouter";
 import { useState } from "react";
+import Playground from "@/components/Playground";
 
 const MARQUEE_TEXT =
   "STAKEHOLDER MANAGEMENT · RESEARCH SYNTHESIS · PRESENTATION & FACILITATION · CROSS-FUNCTIONAL COLLABORATION · PROBLEM FRAMING · INTERPERSONAL COMMUNICATION · CRITICAL THINKING · INTERPRETATION & INSIGHT · ";
@@ -248,6 +249,9 @@ export default function Home() {
               ))}
             </div>
           </section>
+
+          {/* ── Playground ── */}
+          <Playground />
 
           {/* ── Selected Work ── */}
           <section className="pb-24" onMouseMove={handleMouseMove}>
