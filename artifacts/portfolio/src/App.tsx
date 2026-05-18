@@ -8,6 +8,7 @@ import NotFound from "@/pages/not-found";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Cursor from "@/components/Cursor";
+import LocationWidget from "@/components/LocationWidget";
 
 // Pages
 import Home from "@/pages/Home";
@@ -58,6 +59,7 @@ function Router() {
         </motion.main>
       </AnimatePresence>
       <Footer />
+      <LocationWidget />
     </div>
   );
 }
