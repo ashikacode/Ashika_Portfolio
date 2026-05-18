@@ -49,7 +49,7 @@ export default function Header() {
           ))}
           <Link
             href="/contact"
-            className="text-sm font-mono tracking-[0.12em] px-5 py-2 rounded-full border border-foreground/40 text-foreground hover:border-primary hover:text-primary transition-colors duration-200"
+            className="text-xs font-mono tracking-[0.1em] px-4 py-1.5 rounded-full border border-foreground/40 text-foreground hover:border-primary hover:text-primary transition-colors duration-200"
           >
             Let's Talk
           </Link>
@@ -67,9 +67,9 @@ export default function Header() {
 
         {/* Mobile Menu */}
         <div
-          className={`fixed inset-0 bg-background z-40 flex flex-col items-center justify-center gap-10 transition-transform duration-500 ease-in-out ${
-            isOpen ? "translate-y-0" : "-translate-y-full"
-          } md:hidden`}
+          className={`fixed inset-0 bg-background z-40 flex flex-col items-center justify-center gap-10 transition-all duration-500 ease-in-out md:hidden ${
+            isOpen ? "translate-y-0 opacity-100 pointer-events-auto" : "-translate-y-full opacity-0 pointer-events-none"
+          }`}
         >
           {navLinks.map((link) => (
             <Link
