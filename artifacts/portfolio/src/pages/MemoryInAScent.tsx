@@ -115,32 +115,32 @@ function DeviceHero() {
         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
       >
         {/* Wood base */}
-        <rect x="30" y="200" width="120" height="70" rx="4" fill="#c4945a" opacity="0.9"/>
-        <rect x="30" y="200" width="120" height="8" rx="2" fill="#a07840" opacity="0.6"/>
+        <rect x="30" y="200" width="120" height="70" rx="4" fill="#d4a46a" opacity="1"/>
+        <rect x="30" y="200" width="120" height="8" rx="2" fill="#b08850" opacity="0.8"/>
         {/* Wood grain */}
-        <line x1="40" y1="215" x2="140" y2="215" stroke="#a07840" strokeWidth="0.8" opacity="0.4"/>
-        <line x1="38" y1="228" x2="142" y2="228" stroke="#a07840" strokeWidth="0.8" opacity="0.3"/>
-        <line x1="42" y1="241" x2="138" y2="241" stroke="#a07840" strokeWidth="0.8" opacity="0.35"/>
-        <line x1="40" y1="254" x2="140" y2="254" stroke="#a07840" strokeWidth="0.6" opacity="0.25"/>
+        <line x1="40" y1="215" x2="140" y2="215" stroke="#b08850" strokeWidth="0.8" opacity="0.6"/>
+        <line x1="38" y1="228" x2="142" y2="228" stroke="#b08850" strokeWidth="0.8" opacity="0.5"/>
+        <line x1="42" y1="241" x2="138" y2="241" stroke="#b08850" strokeWidth="0.8" opacity="0.55"/>
+        <line x1="40" y1="254" x2="140" y2="254" stroke="#b08850" strokeWidth="0.6" opacity="0.4"/>
         {/* Acrylic chamber */}
         <rect x="35" y="60" width="110" height="145" rx="3"
-          fill="#e0457b" fillOpacity="0.35"
-          stroke="#e0457b" strokeWidth="1.2" strokeOpacity="0.6"/>
+          fill="#e0457b" fillOpacity="0.7"
+          stroke="#f06090" strokeWidth="1.5" strokeOpacity="1"/>
         {/* Inner highlight */}
-        <rect x="42" y="68" width="40" height="130" rx="2" fill="white" fillOpacity="0.04"/>
+        <rect x="42" y="68" width="40" height="130" rx="2" fill="white" fillOpacity="0.1"/>
         {/* Atomizer holes */}
-        <circle cx="70" cy="195" r="8" fill="#001929" stroke="#e0457b" strokeWidth="0.8" strokeOpacity="0.5"/>
-        <circle cx="90" cy="195" r="8" fill="#001929" stroke="#e0457b" strokeWidth="0.8" strokeOpacity="0.5"/>
-        <circle cx="110" cy="195" r="8" fill="#001929" stroke="#e0457b" strokeWidth="0.8" strokeOpacity="0.5"/>
+        <circle cx="70" cy="195" r="8" fill="#001929" stroke="#f06090" strokeWidth="1" strokeOpacity="0.9"/>
+        <circle cx="90" cy="195" r="8" fill="#001929" stroke="#f06090" strokeWidth="1" strokeOpacity="0.9"/>
+        <circle cx="110" cy="195" r="8" fill="#001929" stroke="#f06090" strokeWidth="1" strokeOpacity="0.9"/>
         {/* Mist dots */}
-        <circle cx="70"  cy="182" r="3"   fill="#2dd4bf" opacity="0.4"/>
-        <circle cx="68"  cy="170" r="2.5" fill="#2dd4bf" opacity="0.25"/>
-        <circle cx="90"  cy="178" r="3.5" fill="#2dd4bf" opacity="0.35"/>
-        <circle cx="110" cy="180" r="3"   fill="#2dd4bf" opacity="0.3"/>
-        <circle cx="112" cy="168" r="2"   fill="#2dd4bf" opacity="0.2"/>
+        <circle cx="70"  cy="182" r="3"   fill="#2dd4bf" opacity="0.75"/>
+        <circle cx="68"  cy="170" r="2.5" fill="#2dd4bf" opacity="0.55"/>
+        <circle cx="90"  cy="178" r="3.5" fill="#2dd4bf" opacity="0.65"/>
+        <circle cx="110" cy="180" r="3"   fill="#2dd4bf" opacity="0.6"/>
+        <circle cx="112" cy="168" r="2"   fill="#2dd4bf" opacity="0.45"/>
         {/* RGB sensor glow */}
-        <circle cx="145" cy="85" r="6" fill="#2dd4bf" fillOpacity="0.3" stroke="#2dd4bf" strokeWidth="0.8"/>
-        <circle cx="145" cy="85" r="3" fill="#2dd4bf" opacity="0.6"/>
+        <circle cx="145" cy="85" r="7" fill="#2dd4bf" fillOpacity="0.5" stroke="#2dd4bf" strokeWidth="1.2"/>
+        <circle cx="145" cy="85" r="3.5" fill="#2dd4bf" opacity="1"/>
       </motion.svg>
 
       {/* Floating photo strip */}
@@ -154,16 +154,16 @@ function DeviceHero() {
           zIndex: 3,
           width: 90,
         }}
-        animate={{ rotate: [-8, -8], y: [0, -6, 0] }}
-        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 0.5 }}
+        animate={{ rotate: [-6, -11, -6], y: [0, -10, 0] }}
+        transition={{ repeat: Infinity, duration: 3.8, ease: "easeInOut", delay: 0.6 }}
       >
-        <rect width="80" height="110" rx="2" fill="#f2ede4" opacity="0.9"/>
-        <rect x="6" y="6" width="68" height="68" fill="#c4945a" opacity="0.5"/>
-        <ellipse cx="40" cy="55" rx="28" ry="10" fill="#a07840" opacity="0.4"/>
-        <circle cx="55" cy="30" r="10" fill="#f2c06b" opacity="0.6"/>
-        <rect x="6" y="80" width="68" height="2" fill="#e0e0e0" opacity="0.5"/>
-        <rect x="6" y="88" width="40" height="2" fill="#e0e0e0" opacity="0.35"/>
-        <rect x="6" y="96" width="55" height="2" fill="#e0e0e0" opacity="0.25"/>
+        <rect width="80" height="110" rx="2" fill="#f8f2e8" opacity="1"/>
+        <rect x="6" y="6" width="68" height="68" fill="#c4945a" opacity="0.75"/>
+        <ellipse cx="40" cy="55" rx="28" ry="10" fill="#a07840" opacity="0.65"/>
+        <circle cx="55" cy="30" r="10" fill="#f2c06b" opacity="0.9"/>
+        <rect x="6" y="80" width="68" height="2" fill="#c0c0c0" opacity="0.7"/>
+        <rect x="6" y="88" width="40" height="2" fill="#c0c0c0" opacity="0.55"/>
+        <rect x="6" y="96" width="55" height="2" fill="#c0c0c0" opacity="0.4"/>
       </motion.svg>
 
       {/* Bottom gradient — fades to the case study cream bg */}
@@ -177,27 +177,6 @@ function DeviceHero() {
           pointerEvents: "none",
         }}
       />
-
-      {/* Hero label */}
-      <div
-        style={{
-          position: "absolute",
-          top: "1.5rem",
-          right: "1.5rem",
-          zIndex: 5,
-          fontFamily: "monospace",
-          fontSize: "0.55rem",
-          letterSpacing: "0.2em",
-          textTransform: "uppercase",
-          color: "rgba(252,245,233,0.5)",
-          border: "1px solid rgba(252,245,233,0.15)",
-          padding: "0.35rem 0.7rem",
-          background: "rgba(0,25,41,0.6)",
-          backdropFilter: "blur(4px)",
-        }}
-      >
-        Speculative Design · HCI · 2023
-      </div>
     </div>
   );
 }
