@@ -41,7 +41,7 @@ function Router() {
       <AnimatePresence mode="wait" initial={false}>
         <motion.main
           key={location}
-          className={`flex-1 w-full pt-32 pb-16 ${isHome ? "" : "max-w-6xl mx-auto px-6 md:px-12 lg:px-20"}`}
+          className={`flex-1 w-full ${isHome ? "h-[100dvh] overflow-hidden" : "pt-32 pb-16 max-w-6xl mx-auto px-6 md:px-12 lg:px-20"}`}
           variants={pageVariants}
           initial="initial"
           animate="animate"
