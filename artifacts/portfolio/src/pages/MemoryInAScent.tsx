@@ -1,11 +1,159 @@
 import { Helmet } from "react-helmet-async";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "wouter";
+import { useState } from "react";
+import { Wind, ScanEye, Smartphone, Package, BrainCircuit, Layers } from "lucide-react";
 
 const cs = {
   label: { color: "#003049", opacity: 0.55 },
   box: { backgroundColor: "#003049", color: "#fcf5e9" },
 };
+
+const futureItems = [
+  {
+    icon: Wind,
+    title: "Electronic nose",
+    body: "Captures + recreates a wide scent range with greater precision",
+    detail: "Next-gen biosensor arrays can distinguish thousands of molecular compounds, enabling accurate recreation of complex environmental scents far beyond the current three-atomiser palette.",
+  },
+  {
+    icon: ScanEye,
+    title: "Visual AI recognition",
+    body: "Object + scene detection suggests contextual scents beyond colour",
+    detail: "Computer vision models trained on scene semantics — a forest, a bakery, the ocean — would surface scent suggestions that go beyond dominant colour, anchoring memory in context.",
+  },
+  {
+    icon: Smartphone,
+    title: "Mobile integration",
+    body: "Control selections, customise settings, receive recommendations",
+    detail: "A companion app lets carers or users pre-load memory profiles, adjust atomiser intensity, and receive nudges when suggested scents align with logged emotional states.",
+  },
+  {
+    icon: Package,
+    title: "Compact form factor",
+    body: "Sleek, portable device — tactile + sensory in one object",
+    detail: "Moving from a desktop prototype to a palm-sized object expands reach into residential care, home visits, and moments of spontaneous recall anywhere.",
+  },
+  {
+    icon: BrainCircuit,
+    title: "Machine learning",
+    body: "Learns user preferences over time; personalises scent associations",
+    detail: "Feedback loops — did a scent trigger a positive memory response? — train a personal model that improves match accuracy with each interaction.",
+  },
+  {
+    icon: Layers,
+    title: "Expanded scent library",
+    body: "Beyond 3 atomisers — blended, layered olfactory outputs",
+    detail: "A modular cartridge system with 12+ scent channels opens up blended outputs, seasonal collections, and user-contributed profiles shared across the platform.",
+  },
+];
+
+function FutureModelSection() {
+  const [selected, setSelected] = useState<number | null>(null);
+
+  return (
+    <section className="flex flex-col gap-8">
+      {/* Divider heading */}
+      <div className="flex items-center gap-4">
+        <div className="flex-1 h-px" style={{ background: "#003049", opacity: 0.2 }} />
+        <h2
+          className="text-xs font-mono font-bold tracking-[0.3em] uppercase shrink-0"
+          style={{ color: "#003049", opacity: 0.55 }}
+        >
+          FUTURE MODEL
+        </h2>
+        <div className="flex-1 h-px" style={{ background: "#003049", opacity: 0.2 }} />
+      </div>
+
+      {/* Card grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+        {futureItems.map((item, i) => {
+          const Icon = item.icon;
+          const isSelected = selected === i;
+          return (
+            <motion.button
+              key={item.title}
+              onClick={() => setSelected(isSelected ? null : i)}
+              className="text-left flex flex-col gap-4 p-6 rounded-sm w-full"
+              style={{
+                backgroundColor: "#003049",
+                border: `1px solid ${isSelected ? "rgba(45,212,191,0.7)" : "rgba(252,245,233,0.06)"}`,
+                cursor: "default",
+              }}
+              whileHover={{ y: -3, borderColor: "rgba(45,212,191,0.35)" }}
+              whileTap={{ scale: 0.98 }}
+              animate={{
+                boxShadow: isSelected
+                  ? "0 0 0 1px rgba(45,212,191,0.5), 0 8px 24px rgba(0,0,0,0.3)"
+                  : "0 2px 8px rgba(0,0,0,0.2)",
+              }}
+              transition={{ duration: 0.2 }}
+            >
+              {/* Icon */}
+              <div
+                className="w-8 h-8 flex items-center justify-center rounded-sm"
+                style={{
+                  background: isSelected ? "rgba(45,212,191,0.18)" : "rgba(45,212,191,0.08)",
+                  transition: "background 0.2s",
+                }}
+              >
+                <Icon
+                  size={16}
+                  style={{ color: isSelected ? "#2dd4bf" : "rgba(45,212,191,0.7)" }}
+                  strokeWidth={1.5}
+                />
+              </div>
+
+              {/* Title */}
+              <div className="flex flex-col gap-2">
+                <h3
+                  className="font-bold text-sm leading-snug"
+                  style={{ color: "#fcf5e9" }}
+                >
+                  {item.title}
+                </h3>
+                <p
+                  className="text-xs leading-relaxed font-mono"
+                  style={{ color: "rgba(252,245,233,0.55)" }}
+                >
+                  {item.body}
+                </p>
+              </div>
+
+              {/* Expanded detail */}
+              <AnimatePresence>
+                {isSelected && (
+                  <motion.p
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="text-xs leading-relaxed overflow-hidden"
+                    style={{
+                      color: "rgba(252,245,233,0.45)",
+                      borderTop: "1px solid rgba(252,245,233,0.1)",
+                      paddingTop: "12px",
+                      marginTop: "4px",
+                    }}
+                  >
+                    {item.detail}
+                  </motion.p>
+                )}
+              </AnimatePresence>
+            </motion.button>
+          );
+        })}
+      </div>
+
+      <p
+        className="text-xs font-mono tracking-wider"
+        style={{ color: "#003049", opacity: 0.4 }}
+      >
+        TAP A CARD TO EXPAND
+      </p>
+    </section>
+  );
+}
 
 export default function MemoryInAScent() {
   const [, navigate] = useLocation();
@@ -160,20 +308,7 @@ export default function MemoryInAScent() {
             </section>
 
             {/* Future Model */}
-            <section className="flex flex-col gap-8">
-              <div className="pb-3" style={{ borderBottom: "1px solid #003049" }}>
-                <h2 className="text-xs font-bold tracking-[0.2em] uppercase" style={cs.label}>
-                  FUTURE MODEL
-                </h2>
-              </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 font-mono text-sm">
-                {["Electronic Nose", "Visual AI Recognition", "Mobile Pairing", "Machine Learning", "Expanded Library", "Compact Form"].map((item) => (
-                  <div key={item} className="p-6 rounded-sm flex items-center justify-center text-center" style={cs.box}>
-                    <span style={{ color: "#fcf5e9" }}>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </section>
+            <FutureModelSection />
 
             {/* Prototype Development */}
             <section className="flex flex-col gap-8">
