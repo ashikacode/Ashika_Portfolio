@@ -1,13 +1,206 @@
 import { Helmet } from "react-helmet-async";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "wouter";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Wind, ScanEye, Smartphone, Package, BrainCircuit, Layers } from "lucide-react";
 
 const cs = {
   label: { color: "#003049", opacity: 0.55 },
   box: { backgroundColor: "#003049", color: "#fcf5e9" },
 };
+
+function DeviceHero() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    window.addEventListener("resize", resize);
+
+    const COLORS = [
+      "rgba(45,212,191,",
+      "rgba(224,69,123,",
+      "rgba(252,245,233,",
+    ];
+
+    const particles = Array.from({ length: 55 }, () => ({
+      x: Math.random() * (canvas.width || 600),
+      y: Math.random() * (canvas.height || 380),
+      r: Math.random() * 2.5 + 0.5,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: -(Math.random() * 0.5 + 0.2),
+      alpha: Math.random() * 0.35 + 0.05,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      life: Math.random(),
+      decay: Math.random() * 0.003 + 0.001,
+    }));
+
+    let animId: number;
+
+    const tick = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const p of particles) {
+        p.x += p.vx + Math.sin(p.life * 3) * 0.2;
+        p.y += p.vy;
+        p.life += p.decay;
+
+        if (p.y < -10 || p.life > 1) {
+          p.x = Math.random() * canvas.width;
+          p.y = canvas.height + 10;
+          p.life = 0;
+          p.alpha = Math.random() * 0.35 + 0.05;
+        }
+
+        const fade =
+          p.life < 0.2 ? p.life / 0.2 : p.life > 0.8 ? (1 - p.life) / 0.2 : 1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = p.color + p.alpha * fade + ")";
+        ctx.fill();
+      }
+      animId = requestAnimationFrame(tick);
+    };
+    tick();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animId);
+    };
+  }, []);
+
+  return (
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        height: 420,
+        overflow: "hidden",
+        background: "#001929",
+        borderRadius: 2,
+      }}
+    >
+      {/* Particle canvas */}
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: "absolute",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 1,
+        }}
+      />
+
+      {/* Floating device SVG */}
+      <motion.svg
+        viewBox="0 0 180 280"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: "50%",
+          translateX: "-50%",
+          zIndex: 2,
+          width: 220,
+        }}
+        animate={{ y: [0, -12, 0] }}
+        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+      >
+        {/* Wood base */}
+        <rect x="30" y="200" width="120" height="70" rx="4" fill="#c4945a" opacity="0.9"/>
+        <rect x="30" y="200" width="120" height="8" rx="2" fill="#a07840" opacity="0.6"/>
+        {/* Wood grain */}
+        <line x1="40" y1="215" x2="140" y2="215" stroke="#a07840" strokeWidth="0.8" opacity="0.4"/>
+        <line x1="38" y1="228" x2="142" y2="228" stroke="#a07840" strokeWidth="0.8" opacity="0.3"/>
+        <line x1="42" y1="241" x2="138" y2="241" stroke="#a07840" strokeWidth="0.8" opacity="0.35"/>
+        <line x1="40" y1="254" x2="140" y2="254" stroke="#a07840" strokeWidth="0.6" opacity="0.25"/>
+        {/* Acrylic chamber */}
+        <rect x="35" y="60" width="110" height="145" rx="3"
+          fill="#e0457b" fillOpacity="0.35"
+          stroke="#e0457b" strokeWidth="1.2" strokeOpacity="0.6"/>
+        {/* Inner highlight */}
+        <rect x="42" y="68" width="40" height="130" rx="2" fill="white" fillOpacity="0.04"/>
+        {/* Atomizer holes */}
+        <circle cx="70" cy="195" r="8" fill="#001929" stroke="#e0457b" strokeWidth="0.8" strokeOpacity="0.5"/>
+        <circle cx="90" cy="195" r="8" fill="#001929" stroke="#e0457b" strokeWidth="0.8" strokeOpacity="0.5"/>
+        <circle cx="110" cy="195" r="8" fill="#001929" stroke="#e0457b" strokeWidth="0.8" strokeOpacity="0.5"/>
+        {/* Mist dots */}
+        <circle cx="70"  cy="182" r="3"   fill="#2dd4bf" opacity="0.4"/>
+        <circle cx="68"  cy="170" r="2.5" fill="#2dd4bf" opacity="0.25"/>
+        <circle cx="90"  cy="178" r="3.5" fill="#2dd4bf" opacity="0.35"/>
+        <circle cx="110" cy="180" r="3"   fill="#2dd4bf" opacity="0.3"/>
+        <circle cx="112" cy="168" r="2"   fill="#2dd4bf" opacity="0.2"/>
+        {/* RGB sensor glow */}
+        <circle cx="145" cy="85" r="6" fill="#2dd4bf" fillOpacity="0.3" stroke="#2dd4bf" strokeWidth="0.8"/>
+        <circle cx="145" cy="85" r="3" fill="#2dd4bf" opacity="0.6"/>
+      </motion.svg>
+
+      {/* Floating photo strip */}
+      <motion.svg
+        viewBox="0 0 80 110"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{
+          position: "absolute",
+          bottom: 30,
+          left: 80,
+          zIndex: 3,
+          width: 90,
+        }}
+        animate={{ rotate: [-8, -8], y: [0, -6, 0] }}
+        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 0.5 }}
+      >
+        <rect width="80" height="110" rx="2" fill="#f2ede4" opacity="0.9"/>
+        <rect x="6" y="6" width="68" height="68" fill="#c4945a" opacity="0.5"/>
+        <ellipse cx="40" cy="55" rx="28" ry="10" fill="#a07840" opacity="0.4"/>
+        <circle cx="55" cy="30" r="10" fill="#f2c06b" opacity="0.6"/>
+        <rect x="6" y="80" width="68" height="2" fill="#e0e0e0" opacity="0.5"/>
+        <rect x="6" y="88" width="40" height="2" fill="#e0e0e0" opacity="0.35"/>
+        <rect x="6" y="96" width="55" height="2" fill="#e0e0e0" opacity="0.25"/>
+      </motion.svg>
+
+      {/* Bottom gradient — fades to the case study cream bg */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to bottom, transparent 35%, rgba(0,25,41,0.5) 70%, #fcf5e9 100%)",
+          zIndex: 4,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Hero label */}
+      <div
+        style={{
+          position: "absolute",
+          top: "1.5rem",
+          right: "1.5rem",
+          zIndex: 5,
+          fontFamily: "monospace",
+          fontSize: "0.55rem",
+          letterSpacing: "0.2em",
+          textTransform: "uppercase",
+          color: "rgba(252,245,233,0.5)",
+          border: "1px solid rgba(252,245,233,0.15)",
+          padding: "0.35rem 0.7rem",
+          background: "rgba(0,25,41,0.6)",
+          backdropFilter: "blur(4px)",
+        }}
+      >
+        Speculative Design · HCI · 2023
+      </div>
+    </div>
+  );
+}
 
 const futureItems = [
   {
@@ -199,14 +392,7 @@ export default function MemoryInAScent() {
             </h1>
           </div>
 
-          <div
-            className="w-full aspect-[16/9] md:aspect-[21/9] rounded-sm flex items-center justify-center"
-            style={{ backgroundColor: "#003049" }}
-          >
-            <span className="font-mono text-sm tracking-widest" style={{ color: "#fcf5e9", opacity: 0.25 }}>
-              IMAGE COMING SOON
-            </span>
-          </div>
+          <DeviceHero />
         </header>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">

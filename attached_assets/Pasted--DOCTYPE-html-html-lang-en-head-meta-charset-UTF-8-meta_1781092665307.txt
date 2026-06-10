@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Memory in a Scent — Case Study Card</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --crimson:      #7a1a2e;
+    --crimson-deep: #5c1222;
+    --crimson-mid:  #9b2338;
+    --crimson-card: #6b1728;
+    --cream:        #f2ede4;
+    --cyan:         #7ecac3;
+    --cyan-dim:     #5aada6;
+    --magenta:      #e0457b;
+    --magenta-dim:  rgba(224,69,123,0.15);
+    --text-main:    #f2ede4;
+    --text-dim:     rgba(242,237,228,0.5);
+    --text-mid:     rgba(242,237,228,0.75);
+    --rule:         rgba(242,237,228,0.1);
+    --rule-strong:  rgba(242,237,228,0.2);
+  }
+
+  body {
+    background-color: var(--crimson);
+    background-image:
+      radial-gradient(ellipse 80% 60% at 110% -10%, var(--crimson-mid) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at -10% 110%, var(--crimson-deep) 0%, transparent 55%);
+    color: var(--text-main);
+    font-family: 'Outfit', sans-serif;
+    min-height: 100vh;
+    padding: 3rem 1.5rem 5rem;
+    overflow-x: hidden;
+  }
+
+  /* Grid texture */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(242,237,228,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(242,237,228,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .page-wrap {
+    position: relative;
+    z-index: 2;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+
+  /* ── NAV ── */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.8rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 4rem;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--cyan); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1px;
+    background: var(--cyan);
+    transition: width 0.25s;
+  }
+  .nav-links a:hover { color: var(--text-main); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.active { color: var(--cyan); }
+  .nav-links a.active::after { width: 100%; }
+
+  /* ── BREADCRUMB ── */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+    animation-delay: 0.05s;
+  }
+
+  .breadcrumb a, .breadcrumb span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .breadcrumb a:hover { color: var(--cyan); }
+  .breadcrumb .sep { color: var(--rule-strong); }
+  .breadcrumb .current { color: var(--cyan); }
+
+  /* ── CASE STUDY CARD ── */
+  .case-card {
+    background: var(--crimson-card);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeUp 0.85s ease forwards;
+    animation-delay: 0.15s;
+  }
+
+  /* Top accent bar — magenta to nod to the project's colour world */
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--magenta), var(--cyan));
+    z-index: 3;
+  }
+
+  /* ── HERO IMAGE ZONE ── */
+  .card-hero {
+    position: relative;
+    width: 100%;
+    height: 420px;
+    overflow: hidden;
+    background: #3a0d1a;
+  }
+
+  /* Animated scent particle field */
+  .scent-canvas {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  /* Device illustration — SVG */
+  .device-illustration {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    width: 220px;
+    animation: floatDevice 4s ease-in-out infinite;
+  }
+
+  @keyframes floatDevice {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(-12px); }
+  }
+
+  /* Photo strip suggestion */
+  .photo-strip {
+    position: absolute;
+    bottom: 30px;
+    left: 80px;
+    z-index: 3;
+    width: 90px;
+    animation: floatPhoto 4s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes floatPhoto {
+    0%, 100% { transform: rotate(-8deg) translateY(0); }
+    50%       { transform: rotate(-8deg) translateY(-6px); }
+  }
+
+  .card-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      transparent 40%,
+      rgba(107,23,40,0.6) 75%,
+      var(--crimson-card) 100%
+    );
+    z-index: 2;
+  }
+
+  /* Project label on image */
+  .hero-label {
+    position: absolute;
+    top: 1.8rem;
+    right: 1.8rem;
+    z-index: 4;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border: 1px solid var(--rule-strong);
+    padding: 0.35rem 0.7rem;
+    background: rgba(92,18,34,0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── CARD BODY ── */
+  .card-body {
+    padding: 2.5rem 2.5rem 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  /* Left column */
+  .card-left {}
+
+  .card-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .project-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--magenta);
+  }
+
+  .meta-divider {
+    width: 20px;
+    height: 1px;
+    background: var(--rule-strong);
+  }
+
+  .project-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-main);
+    margin-bottom: 0.3rem;
+  }
+
+  .card-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--magenta);
+    margin-bottom: 1.6rem;
+    opacity: 0.85;
+  }
+
+  .card-hook {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--text-main);
+    line-height: 1.6;
+    margin-bottom: 1.4rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--magenta);
+  }
+
+  .card-description {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+
+  /* Process steps */
+  .process-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 2rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+
+  .process-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .step-node {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--rule-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.5rem;
+    color: var(--cyan);
+    position: relative;
+    background: rgba(126,202,195,0.06);
+    transition: all 0.25s ease;
+  }
+
+  .step-node:hover {
+    border-color: var(--cyan);
+    background: rgba(126,202,195,0.12);
+  }
+
+  .step-icon {
+    font-size: 0.9rem;
+  }
+
+  .step-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.48rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: center;
+    max-width: 60px;
+    line-height: 1.4;
+  }
+
+  .step-arrow {
+    font-size: 0.7rem;
+    color: var(--rule-strong);
+    margin: 0 0.4rem;
+    margin-bottom: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  /* Tags row */
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 0.32rem 0.7rem;
+    border: 1px solid var(--rule-strong);
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .tag:hover {
+    color: var(--cyan);
+    border-color: var(--cyan);
+  }
+
+  .tag.highlight {
+    color: var(--magenta);
+    border-color: rgba(224,69,123,0.35);
+  }
+
+  /* CTA */
+  .card-cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--crimson-deep);
+    background: var(--cyan);
+    padding: 0.65rem 1.4rem;
+    text-decoration: none;
+    transition: all 0.22s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .btn-primary:hover {
+    background: var(--text-main);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: var(--text-dim);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: color 0.2s;
+    border-bottom: 1px solid var(--rule-strong);
+    padding-bottom: 0.1rem;
+  }
+
+  .btn-secondary:hover { color: var(--cyan); border-color: var(--cyan); }
+
+  /* Right column — details panel */
+  .card-right {}
+
+  .detail-panel {
+    border: 1px solid var(--rule-strong);
+    padding: 1.6rem;
+    background: rgba(92,18,34,0.3);
+  }
+
+  .detail-panel-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 1.4rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .detail-row {
+    margin-bottom: 1.2rem;
+  }
+
+  .detail-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.54rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+
+  .detail-value {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--text-main);
+    line-height: 1.5;
+  }
+
+  .detail-value.accent { color: var(--cyan); }
+
+  /* Scent palette */
+  .scent-palette {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.4rem;
+  }
+
+  .scent-dot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .scent-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--rule-strong);
+  }
+
+  .scent-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.44rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    text-align: center;
+  }
+
+  /* Ghost text */
+  .card-ghost {
+    position: absolute;
+    bottom: -2rem;
+    right: 1rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 12rem;
+    font-weight: 700;
+    color: rgba(242,237,228,0.025);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  /* ── BACK LINK ── */
+  .back-row {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+    animation-delay: 0.9s;
+  }
+
+  .back-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--cyan); }
+
+  .next-link {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: var(--text-dim);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .next-link:hover { color: var(--cyan); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 720px) {
+    .card-body { grid-template-columns: 1fr; gap: 2rem; }
+    .card-hero { height: 300px; }
+    nav { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Ash<span>i</span>da Ramesh</a>
+    <ul class="nav-links">
+      <li><a href="#">About</a></li>
+      <li><a href="#" class="active">Work</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="#">Work</a>
+    <span class="sep">—</span>
+    <span class="current">Memory in a Scent</span>
+  </div>
+
+  <!-- CASE STUDY CARD -->
+  <div class="case-card">
+
+    <!-- HERO -->
+    <div class="card-hero">
+
+      <!-- Animated scent particles -->
+      <canvas class="scent-canvas" id="scentCanvas"></canvas>
+
+      <!-- Device SVG -->
+      <svg class="device-illustration" viewBox="0 0 180 280" xmlns="http://www.w3.org/2000/svg">
+        <!-- Wood base -->
+        <rect x="30" y="200" width="120" height="70" rx="4" fill="#c4945a" opacity="0.9"/>
+        <rect x="30" y="200" width="120" height="8" rx="2" fill="#a07840" opacity="0.6"/>
+        <!-- Wood grain lines -->
+        <line x1="40" y1="215" x2="140" y2="215" stroke="#a07840" stroke-width="0.8" opacity="0.4"/>
+        <line x1="38" y1="228" x2="142" y2="228" stroke="#a07840" stroke-width="0.8" opacity="0.3"/>
+        <line x1="42" y1="241" x2="138" y2="241" stroke="#a07840" stroke-width="0.8" opacity="0.35"/>
+        <line x1="40" y1="254" x2="140" y2="254" stroke="#a07840" stroke-width="0.6" opacity="0.25"/>
+        <!-- Acrylic top -->
+        <rect x="35" y="60" width="110" height="145" rx="3"
+              fill="#e0457b" fill-opacity="0.35"
+              stroke="#e0457b" stroke-width="1.2" stroke-opacity="0.6"/>
+        <!-- Inner highlight -->
+        <rect x="42" y="68" width="40" height="130" rx="2"
+              fill="white" fill-opacity="0.04"/>
+        <!-- Three atomizer holes -->
+        <circle cx="70" cy="195" r="8" fill="#3a0d1a" stroke="#e0457b" stroke-width="0.8" stroke-opacity="0.5"/>
+        <circle cx="90" cy="195" r="8" fill="#3a0d1a" stroke="#e0457b" stroke-width="0.8" stroke-opacity="0.5"/>
+        <circle cx="110" cy="195" r="8" fill="#3a0d1a" stroke="#e0457b" stroke-width="0.8" stroke-opacity="0.5"/>
+        <!-- Mist dots from holes -->
+        <circle cx="70" cy="182" r="3" fill="#7ecac3" opacity="0.4"/>
+        <circle cx="68" cy="170" r="2.5" fill="#7ecac3" opacity="0.25"/>
+        <circle cx="90" cy="178" r="3.5" fill="#7ecac3" opacity="0.35"/>
+        <circle cx="110" cy="180" r="3" fill="#7ecac3" opacity="0.3"/>
+        <circle cx="112" cy="168" r="2" fill="#7ecac3" opacity="0.2"/>
+        <!-- RGB sensor glow -->
+        <circle cx="145" cy="85" r="6" fill="#7ecac3" fill-opacity="0.3" stroke="#7ecac3" stroke-width="0.8"/>
+        <circle cx="145" cy="85" r="3" fill="#7ecac3" opacity="0.6"/>
+      </svg>
+
+      <!-- Photo strip -->
+      <svg class="photo-strip" viewBox="0 0 80 110" xmlns="http://www.w3.org/2000/svg">
+        <rect width="80" height="110" rx="2" fill="#f2ede4" opacity="0.9"/>
+        <rect x="6" y="6" width="68" height="68" fill="#c4945a" opacity="0.5"/>
+        <!-- Simple landscape suggestion -->
+        <ellipse cx="40" cy="55" rx="28" ry="10" fill="#a07840" opacity="0.4"/>
+        <circle cx="55" cy="30" r="10" fill="#f2c06b" opacity="0.6"/>
+        <rect x="6" y="80" width="68" height="2" fill="#e0e0e0" opacity="0.5"/>
+        <rect x="6" y="88" width="40" height="2" fill="#e0e0e0" opacity="0.35"/>
+        <rect x="6" y="96" width="55" height="2" fill="#e0e0e0" opacity="0.25"/>
+      </svg>
+
+      <div class="card-hero-overlay"></div>
+      <div class="hero-label">Speculative Design · HCI · 2023</div>
+    </div>
+
+    <!-- CARD BODY -->
+    <div class="card-body">
+
+      <!-- LEFT -->
+      <div class="card-left">
+        <div class="card-meta-row">
+          <span class="project-num">02 —</span>
+          <div class="meta-divider"></div>
+          <span class="project-role">Speculative Designer · HCI Researcher · Prototyper</span>
+        </div>
+
+        <h2 class="card-title">Memory in a Scent</h2>
+        <p class="card-subtitle">RMIT Techtopia · Semester 1, 2023</p>
+
+        <p class="card-hook">
+          A portable device that uses scent to unlock memory — designed for the people who need it most.
+        </p>
+
+        <p class="card-description">
+          Memory in a Scent is a speculative HCI project exploring olfaction as an underutilised sense
+          in technology. Using an Arduino Uno, an RGB sensor, and ultrasonic atomisers, the device reads
+          the dominant colours in a photograph and releases a corresponding scent — triggering emotional
+          memory recall. Designed to be approachable and portable — wood and acrylic, no medical
+          equipment, no bulk — it was conceived with dementia and Alzheimer's patients in mind,
+          sitting at the intersection of speculative design, health, and human-computer interaction.
+        </p>
+
+        <!-- Process flow -->
+        <div class="process-row">
+          <div class="process-step">
+            <div class="step-node"><span class="step-icon">🖼</span></div>
+            <span class="step-label">Insert Photo</span>
+          </div>
+          <span class="step-arrow">→</span>
+          <div class="process-step">
+            <div class="step-node"><span class="step-icon">👁</span></div>
+            <span class="step-label">RGB Sensor Reads</span>
+          </div>
+          <span class="step-arrow">→</span>
+          <div class="process-step">
+            <div class="step-node"><span class="step-icon">⚡</span></div>
+            <span class="step-label">Arduino Analyses</span>
+          </div>
+          <span class="step-arrow">→</span>
+          <div class="process-step">
+            <div class="step-node"><span class="step-icon">💧</span></div>
+            <span class="step-label">Atomiser Triggers</span>
+          </div>
+          <span class="step-arrow">→</span>
+          <div class="process-step">
+            <div class="step-node"><span class="step-icon">🌿</span></div>
+            <span class="step-label">Scent Released</span>
+          </div>
+        </div>
+
+        <div class="card-tags">
+          <span class="tag highlight">Speculative Design</span>
+          <span class="tag highlight">Health</span>
+          <span class="tag">HCI Research</span>
+          <span class="tag">Arduino</span>
+          <span class="tag">Prototyping</span>
+          <span class="tag">User Experience</span>
+          <span class="tag">Dementia Care</span>
+        </div>
+
+        <div class="card-cta">
+          <a href="#" class="btn-primary">View Full Case Study →</a>
+          <a href="#" class="btn-secondary">Read Research Paper ↗</a>
+        </div>
+      </div>
+
+      <!-- RIGHT — detail panel -->
+      <div class="card-right">
+        <div class="detail-panel">
+          <p class="detail-panel-title">Project Details</p>
+
+          <div class="detail-row">
+            <span class="detail-label">Context</span>
+            <span class="detail-value">RMIT Techtopia Studio — speculative design unit exploring the ethics and future of technology</span>
+          </div>
+
+          <div class="detail-row">
+            <span class="detail-label">My Role</span>
+            <span class="detail-value">Research, concept development, prototype design, Arduino programming, documentation</span>
+          </div>
+
+          <div class="detail-row">
+            <span class="detail-label">Team</span>
+            <span class="detail-value">Ashika Ramesh, Tristan Goddard, Semiha Atici</span>
+          </div>
+
+          <div class="detail-row">
+            <span class="detail-label">Technology</span>
+            <span class="detail-value accent">Arduino Uno · RGB Sensor · Ultrasonic Atomisers · I2C</span>
+          </div>
+
+          <div class="detail-row">
+            <span class="detail-label">Primary Users</span>
+            <span class="detail-value">Dementia & Alzheimer's patients, memory care environments</span>
+          </div>
+
+          <div class="detail-row">
+            <span class="detail-label">Scents Used</span>
+            <div class="scent-palette">
+              <div class="scent-dot">
+                <div class="scent-circle" style="background:radial-gradient(circle, #f4a846, #e07b20);"></div>
+                <span class="scent-name">Orange</span>
+              </div>
+              <div class="scent-dot">
+                <div class="scent-circle" style="background:radial-gradient(circle, #b8a4d4, #7b5ea7);"></div>
+                <span class="scent-name">Lavender</span>
+              </div>
+              <div class="scent-dot">
+                <div class="scent-circle" style="background:radial-gradient(circle, #8b6914, #5c4209);"></div>
+                <span class="scent-name">Tobacco</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="detail-row" style="margin-bottom:0;">
+            <span class="detail-label">Design Approach</span>
+            <span class="detail-value">Speculative design + participatory prototyping — exploring technology not as it is, but as it could be</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /card-body -->
+
+    <div class="card-ghost">02</div>
+
+  </div><!-- /case-card -->
+
+  <!-- BACK / NEXT -->
+  <div class="back-row">
+    <a href="#" class="back-link">← Back to Work</a>
+    <a href="#" class="next-link">Next Project — CHI Paper →</a>
+  </div>
+
+</div>
+
+<script>
+  // Scent particle animation
+  const canvas = document.getElementById('scentCanvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const particles = [];
+  const COLORS = ['rgba(126,202,195,', 'rgba(224,69,123,', 'rgba(242,237,228,'];
+
+  for (let i = 0; i < 55; i++) {
+    particles.push({
+      x:     Math.random() * canvas.width,
+      y:     Math.random() * canvas.height,
+      r:     Math.random() * 2.5 + 0.5,
+      vx:    (Math.random() - 0.5) * 0.3,
+      vy:    -(Math.random() * 0.5 + 0.2),
+      alpha: Math.random() * 0.35 + 0.05,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      life:  Math.random(),
+      decay: Math.random() * 0.003 + 0.001,
+    });
+  }
+
+  function tick() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.x += p.vx + Math.sin(p.life * 3) * 0.2;
+      p.y += p.vy;
+      p.life += p.decay;
+
+      if (p.y < -10 || p.life > 1) {
+        p.x    = Math.random() * canvas.width;
+        p.y    = canvas.height + 10;
+        p.life = 0;
+        p.alpha = Math.random() * 0.35 + 0.05;
+      }
+
+      const fade = p.life < 0.2 ? p.life / 0.2 : p.life > 0.8 ? (1 - p.life) / 0.2 : 1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.color + (p.alpha * fade) + ')';
+      ctx.fill();
+    });
+    requestAnimationFrame(tick);
+  }
+  tick();
+</script>
+
+</body>
+</html>
