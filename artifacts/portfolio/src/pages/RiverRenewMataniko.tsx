@@ -107,9 +107,6 @@ function RiverIllustration() {
         <rect x="255" y="320" width="180" height="28" rx="2" fill="#fcf5e9" fillOpacity="0.12" stroke="#fcf5e9" strokeOpacity="0.5" strokeWidth="1" />
         <text x="345" y="338" textAnchor="middle" fill="#fcf5e9" fillOpacity="0.9" fontFamily="monospace" fontSize="10" letterSpacing="1.5">AFTER RIVERRENEW</text>
 
-        {/* ── Top tag ── */}
-        <rect x="560" y="22" width="318" height="26" rx="2" fill="none" stroke="#fcf5e9" strokeOpacity="0.25" strokeWidth="1" />
-        <text x="719" y="39" textAnchor="middle" fill="#fcf5e9" fillOpacity="0.55" fontFamily="monospace" fontSize="9.5" letterSpacing="1.5">PARTICIPATORY DESIGN  ·  CLIMATE  ·  2023</text>
       </svg>
     </div>
   );

@@ -166,17 +166,6 @@ function DeviceHero() {
         <rect x="6" y="96" width="55" height="2" fill="#c0c0c0" opacity="0.4"/>
       </motion.svg>
 
-      {/* Bottom gradient — fades to the case study cream bg */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to bottom, transparent 35%, rgba(0,25,41,0.5) 70%, #fcf5e9 100%)",
-          zIndex: 4,
-          pointerEvents: "none",
-        }}
-      />
     </div>
   );
 }
