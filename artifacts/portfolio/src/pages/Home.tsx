@@ -34,6 +34,13 @@ const PAD = "px-6 md:px-12 lg:px-20";
 
 const selectedWork = [
   {
+    href: "/work/dicare",
+    num: "01",
+    tag: "LEARNING DESIGN · GAME DESIGN",
+    title: "DICARE",
+    image: "/dicare-hero.png",
+  },
+  {
     href: "/work/memory-in-a-scent",
     num: "02",
     tag: "SPECULATIVE DESIGN · ARDUINO",
@@ -46,13 +53,6 @@ const selectedWork = [
     tag: "SUSTAINABLE SYSTEMS · NbS",
     title: "RIVERRENEW MATANIKO",
     image: "/riverrenew-hero.png",
-  },
-  {
-    href: "/work/dicare",
-    num: "01",
-    tag: "LEARNING DESIGN · GAME DESIGN",
-    title: "DICARE",
-    image: "/dicare-hero.png",
   },
 ];
 
