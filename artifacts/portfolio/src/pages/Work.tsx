@@ -7,10 +7,10 @@ const projects = [
   {
     id: "dicare",
     number: "01",
-    categories: "LEARNING DESIGNER · HEALTH EDUCATION · SERVICE DESIGN",
+    categories: "LEARNING DESIGNER · HEALTH EDUCATION · GAME DESIGN",
     title: "DICARE",
-    link: "/work",
-    placeholder: true,
+    link: "/work/dicare",
+    placeholder: false,
     image: null,
   },
   {

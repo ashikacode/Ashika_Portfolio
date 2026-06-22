@@ -17,6 +17,7 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import MemoryInAScent from "@/pages/MemoryInAScent";
 import RiverRenewMataniko from "@/pages/RiverRenewMataniko";
+import DiaCare from "@/pages/DiaCare";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,7 @@ function Router() {
             <Route path="/work" component={Work} />
             <Route path="/about" component={About} />
             <Route path="/contact" component={Contact} />
+            <Route path="/work/dicare" component={DiaCare} />
             <Route path="/work/memory-in-a-scent" component={MemoryInAScent} />
             <Route path="/work/riverrenew-mataniko" component={RiverRenewMataniko} />
             <Route component={NotFound} />
