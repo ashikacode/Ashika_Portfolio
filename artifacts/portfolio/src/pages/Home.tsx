@@ -47,6 +47,13 @@ const selectedWork = [
     title: "RIVERRENEW MATANIKO",
     image: "/riverrenew-hero.png",
   },
+  {
+    href: "/work/dicare",
+    num: "01",
+    tag: "LEARNING DESIGN · GAME DESIGN",
+    title: "DICARE",
+    image: "/dicare-hero.png",
+  },
 ];
 
 const driveItems = [

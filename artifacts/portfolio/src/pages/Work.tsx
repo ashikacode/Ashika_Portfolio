@@ -11,7 +11,7 @@ const projects = [
     title: "DICARE",
     link: "/work/dicare",
     placeholder: false,
-    image: null,
+    image: "/dicare-hero.png",
   },
   {
     id: "memory-in-a-scent",

@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { useLocation } from "wouter";
+import { Link } from "wouter";
 import impactMapImg from "@assets/image_1782139028084.png";
 import mindMapImg from "@assets/image_1782139783828.png";
 
@@ -199,8 +199,6 @@ const fadeUp = {
 };
 
 export default function DiaCare() {
-  const [, navigate] = useLocation();
-
   return (
     <>
       <Helmet>
@@ -211,7 +209,7 @@ export default function DiaCare() {
       {/* Breadcrumb + tag */}
       <div className="mb-10 flex flex-col gap-5">
         <div className="flex items-center gap-2 font-mono text-xs tracking-widest uppercase" style={cs.label}>
-          <button onClick={() => navigate("/work")} style={{ background:"none", border:"none", padding:0, cursor:"pointer", ...cs.label }}>← WORK</button>
+          <Link href="/work" className="opacity-[0.55] hover:opacity-100 transition-opacity" style={{ color: "#1c1c1c", textDecoration: "none" }}>← WORK</Link>
           <span>/</span>
           <span>DICARE</span>
         </div>
