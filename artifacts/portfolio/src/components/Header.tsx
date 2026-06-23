@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import logoPath from "@assets/ashika-logo.png";
+import logoPath from "@assets/ashika-logo.webp";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
