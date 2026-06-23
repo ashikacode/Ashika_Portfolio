@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import StickerCollage from "@/components/StickerCollage";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -165,9 +166,20 @@ export default function About() {
           </div>
         </motion.section>
 
-        {/* ── Experience ── */}
+        {/* ── Sticker Collage ── */}
         <motion.section
           custom={2}
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          className="mt-20"
+        >
+          <StickerCollage />
+        </motion.section>
+
+        {/* ── Experience ── */}
+        <motion.section
+          custom={3}
           variants={fadeUp}
           initial="hidden"
           animate="visible"
