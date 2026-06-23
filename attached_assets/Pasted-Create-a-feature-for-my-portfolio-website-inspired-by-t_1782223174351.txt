@@ -1,0 +1,45 @@
+Create a feature for my portfolio website inspired by the interactive, collage-like, playful layout style of https://beciorpin.com. 
+
+The core feature should be a collection of scatterable, draggable, and interactive hand-drawn PNG illustrations acting as floating elements on the screen. 
+
+Here are the technical and design requirements:
+
+1. Visual & Layout Style:
+- The style should mimic the loose, interactive, sticker-book/collage feel of Beci Orpin's work. 
+- When the page initially loads, the 7 provided images must be randomly assigned coordinates across the viewport so they look naturally scattered, rather than appearing in a grid.
+- The original PNG images are quite large and vary in quality, so you MUST programmatically downscale their display size significantly (e.g., maximum width/height around 120px to 150px depending on the screen size) using CSS so they fit beautifully as icons/stickers.
+- Give the elements a slight rotation or casual styling to emphasize the hand-drawn look.
+
+2. Interactivity (Dragging & Drifting):
+- All 7 images must be fully draggable anywhere on the screen (using vanilla JavaScript or an easy-to-use library like Interact.js orGSAP Draggable). 
+- The dragging mechanic should feel smooth and responsive on both desktop (mouse) and mobile devices (touch events).
+- Bring dragged items to the front (highest z-index) when clicked/touched.
+
+3. Interactive Descriptions (Modals / Popups):
+- When an image is clicked/tapped (without being dragged), it should open a small, beautifully styled, minimalist "cute" modal or tooltip overlay revealing a personal backstory.
+- The description copy should be formatted cleanly with a warm, playful aesthetic.
+
+Use the following image files and corresponding descriptions explicitly in the code:
+
+- Asset File: "IMG_2182.jpg"
+  Description: "This is called Kolam, something my mom used to draw everyday and something I used to be in aw of and maybe the first expirence of art for me."
+
+- Asset File: "IMG_2183.jpg"
+  Description: "A hand sign in the dance form I do until now, called Bharathanatyam."
+
+- Asset File: "IMG_2184.jpg"
+  Description: "Neembu mirchi - Indian charm made by stringing one lemon and seven green chilies together to ward off the evil eye and bring good fortune."
+
+- Asset File: "IMG_2185.jpg"
+  Description: "Sewing machine something that has been close to me since childhood, saw my grandma stitch and knit for me and then I moved into fashion design."
+
+- Asset File: "IMG_2186.jpg"
+  Description: "Auto Ricksha (Tuk tuk) local transport that I used to use to travel around."
+
+- Asset File: "IMG_2187.jpg"
+  Description: "Lotus - A symbol that expresses purity, spiritual enlightenment, fertility, and resilience. Something I want to bring in my portfolio lol."
+
+- Asset File: "IMG_2188.jpg"
+  Description: "Filter coffee, A traditional method of making coffee that I love and can’t live without."
+
+Please provide clean, modern HTML, CSS, and modular JavaScript. Ensure it is responsive and contains zero broken placeholders.
