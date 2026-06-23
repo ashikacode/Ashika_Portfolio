@@ -1,5 +1,5 @@
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -24,7 +24,6 @@ const queryClient = new QueryClient();
 const pageVariants: Variants = {
   initial: { opacity: 0, y: 18 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const } },
-  exit:    { opacity: 0, y: -10, transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
 function Router() {
@@ -39,27 +38,24 @@ function Router() {
     >
       <Cursor />
       <Header />
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.main
-          key={location}
-          className={`flex-1 w-full ${isHome ? "h-[100dvh] overflow-hidden" : "pt-32 pb-16 max-w-6xl mx-auto px-6 md:px-12 lg:px-20"}`}
-          variants={pageVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-        >
-          <Switch>
-            <Route path="/" component={Home} />
-            <Route path="/work" component={Work} />
-            <Route path="/about" component={About} />
-            <Route path="/contact" component={Contact} />
-            <Route path="/work/dicare" component={DiaCare} />
-            <Route path="/work/memory-in-a-scent" component={MemoryInAScent} />
-            <Route path="/work/riverrenew-mataniko" component={RiverRenewMataniko} />
-            <Route component={NotFound} />
-          </Switch>
-        </motion.main>
-      </AnimatePresence>
+      <motion.main
+        key={location}
+        className={`flex-1 w-full ${isHome ? "h-[100dvh] overflow-hidden" : "pt-32 pb-16 max-w-6xl mx-auto px-6 md:px-12 lg:px-20"}`}
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+      >
+        <Switch>
+          <Route path="/" component={Home} />
+          <Route path="/work" component={Work} />
+          <Route path="/about" component={About} />
+          <Route path="/contact" component={Contact} />
+          <Route path="/work/dicare" component={DiaCare} />
+          <Route path="/work/memory-in-a-scent" component={MemoryInAScent} />
+          <Route path="/work/riverrenew-mataniko" component={RiverRenewMataniko} />
+          <Route component={NotFound} />
+        </Switch>
+      </motion.main>
       <Footer />
       <LocationWidget />
     </div>

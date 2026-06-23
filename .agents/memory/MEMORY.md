@@ -1,0 +1,1 @@
+- [AnimatePresence blank nav (React 19)](animatepresence-react19-blank-nav.md) — mode=wait+StrictMode strands next page at opacity:0 on client nav; use keyed enter-only motion instead.
