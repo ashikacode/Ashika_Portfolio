@@ -28,8 +28,8 @@ const STICKERS: Sticker[] = [
     label: "Kolam",
     description:
       "Kolam — something my mom drew every day and that I was always in awe of. Maybe my first ever experience of art.",
-    left: "1%",
-    top: "2%",
+    left: "2%",
+    top: "18%",
     rotate: -8,
     size: 140,
     delay: 0.05,
@@ -39,8 +39,8 @@ const STICKERS: Sticker[] = [
     src: img2183,
     label: "Bharatanatyam Mudra",
     description: "A hand sign in Bharatanatyam, the classical dance form I still practise to this day.",
-    left: "36%",
-    top: "-1%",
+    left: "80%",
+    top: "8%",
     rotate: 7,
     size: 124,
     delay: 0.1,
@@ -51,8 +51,8 @@ const STICKERS: Sticker[] = [
     label: "Neembu Mirchi",
     description:
       "An Indian charm of one lemon and seven green chillies strung together — to ward off the evil eye and bring good fortune.",
-    left: "72%",
-    top: "3%",
+    left: "86%",
+    top: "45%",
     rotate: -13,
     size: 118,
     delay: 0.15,
@@ -63,8 +63,8 @@ const STICKERS: Sticker[] = [
     label: "Sewing Machine",
     description:
       "Close to me since childhood — I watched my grandma stitch and knit for me, and that love carried me into fashion design.",
-    left: "0%",
-    top: "58%",
+    left: "3%",
+    top: "60%",
     rotate: 11,
     size: 150,
     delay: 0.2,
@@ -75,8 +75,8 @@ const STICKERS: Sticker[] = [
     label: "Auto Rickshaw",
     description:
       "The auto rickshaw (tuk tuk) I rode every day around Chennai. It's a sound, a smell, a whole feeling of home.",
-    left: "31%",
-    top: "78%",
+    left: "75%",
+    top: "72%",
     rotate: -4,
     size: 160,
     delay: 0.25,
@@ -87,8 +87,8 @@ const STICKERS: Sticker[] = [
     label: "Lotus",
     description:
       "A symbol of purity, spiritual enlightenment and resilience — something I want to bring into everything I make.",
-    left: "70%",
-    top: "60%",
+    left: "42%",
+    top: "82%",
     rotate: 9,
     size: 142,
     delay: 0.3,
@@ -99,15 +99,14 @@ const STICKERS: Sticker[] = [
     label: "Filter Coffee",
     description:
       "South Indian filter coffee I genuinely cannot live without. The decoction, the froth, the dabara set — it's ritual.",
-    left: "74%",
-    top: "33%",
+    left: "16%",
+    top: "35%",
     rotate: -9,
     size: 126,
     delay: 0.35,
   },
 ];
 
-const SEEN_KEY = "ashika_seen_stickers";
 
 interface StickerItemProps {
   sticker: Sticker;
@@ -130,9 +129,9 @@ function StickerItem({ sticker, isTop, showBubble, onLift, onTap, constraintsRef
       onPointerDown={onLift}
       onDragStart={onLift}
       onTap={onTap}
-      whileHover={{ scale: 1.1, rotate: sticker.rotate + (sticker.rotate >= 0 ? 4 : -4) }}
-      whileTap={{ scale: 1.05 }}
-      whileDrag={{ scale: 1.08, cursor: "grabbing" }}
+      whileHover={{ scale: 1.08, rotate: sticker.rotate + (sticker.rotate >= 0 ? 3 : -3) }}
+      whileTap={{ scale: 1.04 }}
+      whileDrag={{ scale: 1.07, cursor: "grabbing" }}
       initial={{ opacity: 0, scale: 0.5, rotate: sticker.rotate - 6 }}
       animate={{ opacity: 1, scale: 1, rotate: sticker.rotate }}
       transition={{ type: "spring", stiffness: 300, damping: 20, delay: sticker.delay }}
@@ -143,7 +142,7 @@ function StickerItem({ sticker, isTop, showBubble, onLift, onTap, constraintsRef
         width: sizeCss,
         height: sizeCss,
         cursor: "grab",
-        zIndex: isTop ? 40 : 20,
+        zIndex: isTop ? 14 : 11,
         touchAction: "none",
         userSelect: "none",
         pointerEvents: "auto",
@@ -189,7 +188,6 @@ function StickerItem({ sticker, isTop, showBubble, onLift, onTap, constraintsRef
               zIndex: 60,
             }}
           >
-            {/* tail */}
             <span
               style={{
                 position: "absolute",
@@ -222,52 +220,36 @@ function StickerItem({ sticker, isTop, showBubble, onLift, onTap, constraintsRef
   );
 }
 
-export default function StickerCollage({
-  constraintsRef,
-}: {
-  constraintsRef: React.RefObject<HTMLDivElement | null>;
-}) {
+export default function StickerCollage() {
+  const viewportRef = useRef<HTMLDivElement>(null);
   const [topId, setTopId] = useState<string>("kolam");
-  const [seen, setSeen] = useState<Set<string>>(new Set());
   const [bubbleId, setBubbleId] = useState<string | null>(null);
   const timerRef = useRef<number>(0);
 
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(SEEN_KEY);
-      if (raw) setSeen(new Set(JSON.parse(raw) as string[]));
-    } catch {
-      /* ignore */
-    }
     return () => window.clearTimeout(timerRef.current);
   }, []);
 
   const handleTap = (id: string) => {
-    if (seen.has(id)) return;
-    setBubbleId(id);
-    setSeen((prev) => {
-      const next = new Set(prev);
-      next.add(id);
-      try {
-        localStorage.setItem(SEEN_KEY, JSON.stringify([...next]));
-      } catch {
-        /* ignore */
-      }
-      return next;
-    });
     window.clearTimeout(timerRef.current);
+    if (bubbleId === id) {
+      setBubbleId(null);
+      return;
+    }
+    setBubbleId(id);
     timerRef.current = window.setTimeout(() => setBubbleId(null), 5000);
   };
 
   return (
     <div
+      ref={viewportRef}
       aria-hidden="true"
       style={{
-        position: "absolute",
+        position: "fixed",
         inset: 0,
         overflow: "visible",
         pointerEvents: "none",
-        zIndex: 20,
+        zIndex: 10,
       }}
     >
       {STICKERS.map((s) => (
@@ -278,7 +260,7 @@ export default function StickerCollage({
           showBubble={bubbleId === s.id}
           onLift={() => setTopId(s.id)}
           onTap={() => handleTap(s.id)}
-          constraintsRef={constraintsRef}
+          constraintsRef={viewportRef}
         />
       ))}
     </div>

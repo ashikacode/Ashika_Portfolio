@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
@@ -111,8 +110,6 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 }
 
 export default function About() {
-  const aboutRef = useRef<HTMLDivElement>(null);
-
   return (
     <>
       <Helmet>
@@ -120,7 +117,9 @@ export default function About() {
         <meta name="description" content="Ashika Ramesh is a Learning, Service and UX Research designer based in Melbourne/NAARM. RMIT Master of Design Innovation and Technology." />
       </Helmet>
 
-      <div ref={aboutRef} className="flex flex-col gap-0 pb-24 overflow-x-clip">
+      <StickerCollage />
+
+      <div className="flex flex-col gap-0 pb-24 overflow-x-clip">
 
         {/* ── Page label ── */}
         <motion.div
@@ -135,7 +134,7 @@ export default function About() {
           </span>
         </motion.div>
 
-        {/* ── Hero: photo + bio (with floating stickers) ── */}
+        {/* ── Hero: photo + bio ── */}
         <motion.section
           custom={1}
           variants={fadeUp}
@@ -143,7 +142,6 @@ export default function About() {
           animate="visible"
           className="relative grid grid-cols-1 md:grid-cols-12 gap-0 mt-0 items-center"
         >
-          <StickerCollage constraintsRef={aboutRef} />
           {/* Photo — centered in left column */}
           <div className="md:col-span-4 border-b md:border-b-0 md:border-r border-border/20 flex items-center justify-center py-14">
             <div className="w-full overflow-hidden" style={{ maxHeight: "420px" }}>

@@ -44,6 +44,7 @@ function Router() {
         variants={pageVariants}
         initial="initial"
         animate="animate"
+        style={{ position: "relative", zIndex: 20 }}
       >
         <Switch>
           <Route path="/" component={Home} />

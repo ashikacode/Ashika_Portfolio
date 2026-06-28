@@ -1,8 +1,70 @@
 import { Helmet } from "react-helmet-async";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import type { Variants } from "framer-motion";
 import { Link } from "wouter";
 import { useState, useRef } from "react";
+// ─── Char-by-char tagline reveal ─────────────────────────────────────────────
+
+function TaglineReveal() {
+  const text = "Designer · Researcher · Melbourne / NAARM";
+  return (
+    <p className="flex flex-wrap font-mono text-xs tracking-[0.25em] text-muted-foreground/70 uppercase mb-auto">
+      {text.split("").map((char, i) => (
+        <motion.span
+          key={i}
+          className="inline-block"
+          initial={{ opacity: 0.05, filter: "blur(6px)" }}
+          animate={{ opacity: 1, filter: "blur(0px)" }}
+          transition={{ delay: 0.15 + i * 0.022, duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {char === " " ? " " : char}
+        </motion.span>
+      ))}
+    </p>
+  );
+}
+
+// ─── Char-by-char headline reveal ────────────────────────────────────────────
+
+function HeadlineReveal() {
+  const line1 = "I design how systems";
+  const line2a = "get ";
+  const line2b = "experienced.";
+
+  const l1 = line1.split("").map((c, i) => ({ char: c, idx: i, teal: false }));
+  const base = l1.length;
+  const l2 = [
+    ...line2a.split("").map((c, i) => ({ char: c, idx: base + i, teal: false })),
+    ...line2b.split("").map((c, i) => ({ char: c, idx: base + line2a.length + i, teal: true })),
+  ];
+
+  const renderChar = ({ char, idx, teal }: { char: string; idx: number; teal: boolean }) => (
+    <motion.span
+      key={idx}
+      className="inline-block font-bold uppercase"
+      style={{
+        fontSize: "clamp(2.2rem, 6.8vw, 7.5rem)",
+        lineHeight: 0.92,
+        letterSpacing: "0.02em",
+        color: teal ? "hsl(178 60% 50%)" : "hsl(40 33% 93%)",
+        ...(char === " " ? { minWidth: "0.28em" } : {}),
+      }}
+      initial={{ opacity: 0.04, filter: "blur(14px)", y: 28 }}
+      animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+      transition={{ delay: 0.8 + idx * 0.038, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {char === " " ? " " : char}
+    </motion.span>
+  );
+
+  return (
+    <div className="flex flex-col mt-auto">
+      <div className="flex flex-wrap leading-none">{l1.map(renderChar)}</div>
+      <div className="flex flex-wrap leading-none">{l2.map(renderChar)}</div>
+    </div>
+  );
+}
+
+// ─── Marquee ─────────────────────────────────────────────────────────────────
 
 const MARQUEE_TEXT =
   "STAKEHOLDER MANAGEMENT · RESEARCH SYNTHESIS · PRESENTATION & FACILITATION · CROSS-FUNCTIONAL COLLABORATION · PROBLEM FRAMING · INTERPERSONAL COMMUNICATION · CRITICAL THINKING · INTERPRETATION & INSIGHT · ";
@@ -21,14 +83,7 @@ function Marquee() {
   );
 }
 
-const lineVariants: Variants = {
-  hidden: { opacity: 0, y: 80 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 1.1, ease: [0.16, 1, 0.3, 1] as const, delay: i * 0.14 },
-  }),
-};
+// ─── Static data ─────────────────────────────────────────────────────────────
 
 const PAD = "px-6 md:px-12 lg:px-20";
 
@@ -74,6 +129,8 @@ const driveItems = [
   },
 ];
 
+// ─── Page ─────────────────────────────────────────────────────────────────────
+
 export default function Home() {
   const [hoveredWork, setHoveredWork] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState(0);
@@ -92,8 +149,7 @@ export default function Home() {
   const handleScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
-    const idx = Math.round(el.scrollTop / el.clientHeight);
-    setActiveSection(idx);
+    setActiveSection(Math.round(el.scrollTop / el.clientHeight));
   };
 
   const scrollTo = (i: number) => {
@@ -137,7 +193,7 @@ export default function Home() {
       </motion.div>
 
       {/* Section indicator — left side */}
-      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3 hidden md:flex">
+      <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex-col gap-3 hidden md:flex">
         {[0, 1, 2].map((i) => (
           <button
             key={i}
@@ -174,60 +230,18 @@ export default function Home() {
           className={`h-[100dvh] flex flex-col ${PAD} pt-32`}
           style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
         >
-          <motion.p
-            className="font-mono text-xs tracking-[0.25em] text-muted-foreground/70 uppercase mb-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-          >
-            Designer · Researcher · Melbourne / NAARM
-          </motion.p>
+          {/* Tagline — chars reveal */}
+          <TaglineReveal />
 
-          {/* Headline */}
-          <div className="flex flex-col mt-auto">
-            <div className="overflow-hidden leading-none">
-              <motion.h1
-                custom={0}
-                initial="hidden"
-                animate="visible"
-                variants={lineVariants}
-                className="font-bold uppercase"
-                style={{
-                  fontSize: "clamp(2.2rem, 6.8vw, 7.5rem)",
-                  lineHeight: 0.92,
-                  letterSpacing: "0.02em",
-                  color: "hsl(40 33% 93%)",
-                }}
-              >
-                I design how systems
-              </motion.h1>
-            </div>
-            <div className="overflow-hidden leading-none">
-              <motion.h1
-                custom={1}
-                initial="hidden"
-                animate="visible"
-                variants={lineVariants}
-                className="font-bold uppercase"
-                style={{
-                  fontSize: "clamp(2.2rem, 6.8vw, 7.5rem)",
-                  lineHeight: 0.92,
-                  letterSpacing: "0.02em",
-                  color: "hsl(40 33% 93%)",
-                }}
-              >
-                get{" "}
-                <span style={{ color: "hsl(178 60% 50%)" }}>experienced.</span>
-              </motion.h1>
-            </div>
-          </div>
+          {/* Headline — chars blur-in staggered */}
+          <HeadlineReveal />
 
-          {/* Description */}
+          {/* Description — two sentences, blur-fade */}
           <motion.p
             className="text-sm md:text-base leading-loose text-foreground/55 max-w-xl mt-8 mb-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.4 }}
+            initial={{ opacity: 0, filter: "blur(8px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{ delay: 2.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
             Solving meaningful problems at the intersection of service design,
             learning design, and UX research. I bring rigour and empathy
@@ -235,17 +249,22 @@ export default function Home() {
             that are functional, human, and genuinely felt.
           </motion.p>
 
-          {/* Marquee at bottom */}
-          <div className={`-mx-6 md:-mx-12 lg:-mx-20 mt-auto`}>
+          {/* Marquee */}
+          <motion.div
+            className={`-mx-6 md:-mx-12 lg:-mx-20 mt-auto`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.8, duration: 0.7 }}
+          >
             <Marquee />
-          </div>
+          </motion.div>
 
           {/* Scroll nudge */}
           <motion.div
             className="flex items-center gap-3 py-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
+            transition={{ delay: 3.1, duration: 0.8 }}
           >
             <motion.div
               animate={{ y: [0, 5, 0] }}
@@ -371,7 +390,7 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Footer credit inside last section */}
+            {/* Footer credit */}
             <motion.p
               className="text-xs font-mono text-muted-foreground/25 tracking-[0.15em] uppercase pt-12"
               initial={{ opacity: 0 }}
