@@ -100,7 +100,7 @@ function PolaroidFrame({
       viewport={{ once: true, margin: "-60px" }}
       whileHover={{ rotate: 0, scale: 1.03, y: -6 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      className="relative w-[280px] md:w-[320px] shrink-0"
+      className="relative w-full break-inside-avoid mb-6 md:mb-8"
       style={{
         backgroundColor: "#fcf5e9",
         padding: "14px 14px 10px",
@@ -205,44 +205,26 @@ export default function Fun() {
           </motion.div>
         </motion.div>
 
-        {/* ── Sticker desk ── */}
-        <motion.section
+        {/*
+         * Stickers are viewport-fixed (see StickerCollage.tsx) so they float
+         * loose over the whole page rather than a boxed-in area — this label
+         * is just a hint; the component itself renders nothing here.
+         */}
+        <motion.div
           custom={3}
           variants={fadeUp}
           initial="hidden"
           animate="visible"
-          className="mt-24"
+          className="mt-24 border-b border-border/30 pb-4 flex flex-wrap items-baseline justify-between gap-3"
         >
-          <div className="border-b border-border/30 pb-4 mb-8 flex flex-wrap items-baseline justify-between gap-3">
-            <p className="text-xs font-mono tracking-[0.3em] uppercase text-muted-foreground">
-              LITTLE PIECES OF HOME
-            </p>
-            <p className="text-xs font-mono tracking-[0.15em] text-primary/80">
-              ( drag them around · tap one for its story )
-            </p>
-          </div>
-
-          <div
-            className="relative border border-border/25 h-[68vh] min-h-[440px] max-h-[720px]"
-            data-testid="sticker-desk"
-          >
-            {/* Faint centre note behind the stickers */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-              <span
-                className="text-center px-6"
-                style={{
-                  fontFamily: "'Caveat', cursive",
-                  fontSize: "clamp(1.4rem, 3vw, 2.2rem)",
-                  color: "hsl(40 33% 93% / 0.22)",
-                  transform: "rotate(-2deg)",
-                }}
-              >
-                started in Chennai, stuck with me ~
-              </span>
-            </div>
-            <StickerCollage />
-          </div>
-        </motion.section>
+          <p className="text-xs font-mono tracking-[0.3em] uppercase text-muted-foreground">
+            LITTLE PIECES OF HOME
+          </p>
+          <p className="text-xs font-mono tracking-[0.15em] text-primary/80">
+            ( scattered around the page — drag them anywhere · tap one for its story )
+          </p>
+        </motion.div>
+        <StickerCollage />
 
         {/* ── Illustrations ── */}
         <motion.section
@@ -281,8 +263,12 @@ export default function Fun() {
             “draws things / ~ sometimes”
           </p>
 
-          {/* Polaroid wall */}
-          <div className="flex flex-wrap items-start justify-center md:justify-start gap-10 md:gap-14 py-6">
+          {/*
+           * True masonry gallery via CSS columns — each card's height is
+           * driven by its own image's natural aspect ratio, so it scales
+           * cleanly from 2 pieces to 200 without any layout math.
+           */}
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 md:gap-8 py-6">
             {PIECES.map((piece) => (
               <PolaroidFrame key={piece.id} rotate={piece.rotate} caption={piece.caption}>
                 {piece.kind === "video" ? (
@@ -312,7 +298,7 @@ export default function Fun() {
               viewport={{ once: true, margin: "-60px" }}
               whileHover={{ rotate: 0, scale: 1.03, y: -6 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="relative w-[280px] md:w-[320px] shrink-0 block"
+              className="relative w-full break-inside-avoid mb-6 md:mb-8 block"
               style={{
                 backgroundColor: "hsl(178 60% 50%)",
                 padding: "14px 14px 10px",

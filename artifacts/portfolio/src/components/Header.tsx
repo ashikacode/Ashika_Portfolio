@@ -72,10 +72,11 @@ export default function Header() {
             </Link>
           ))}
 
-          {/* CV — plain anchor so the browser downloads the file */}
+          {/* CV — opens the PDF in a new tab instead of forcing a download */}
           <motion.a
             href={cvHref}
-            download="Ashika_Ramesh_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm font-mono tracking-[0.12em] text-foreground/80 hover:text-foreground transition-colors cursor-none"
             style={{ display: "inline-block" }}
             whileHover={{ y: -3, color: "hsl(40 33% 93%)" }}
@@ -83,7 +84,7 @@ export default function Header() {
             transition={NAV_SPRING}
             data-testid="link-cv-download"
           >
-            CV <span className="text-primary">↓</span>
+            CV <span className="text-primary">↗</span>
           </motion.a>
 
           {/* CTA "Let's Talk" — elastic compress on click, lift on hover */}
@@ -141,7 +142,8 @@ export default function Header() {
 
           <motion.a
             href={cvHref}
-            download="Ashika_Ramesh_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-2xl font-mono tracking-[0.12em] text-foreground hover:text-primary transition-colors block"
             style={{ display: "inline-block" }}
             whileHover={{ scale: 1.05, x: 4 }}
@@ -149,7 +151,7 @@ export default function Header() {
             transition={NAV_SPRING}
             onClick={() => setIsOpen(false)}
           >
-            CV <span className="text-primary">↓</span>
+            CV <span className="text-primary">↗</span>
           </motion.a>
 
           <motion.div

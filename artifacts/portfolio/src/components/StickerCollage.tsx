@@ -240,13 +240,14 @@ export default function StickerCollage() {
     timerRef.current = window.setTimeout(() => setBubbleId(null), 5000);
   };
 
-  // Fills its nearest positioned ancestor — the parent section provides the
-  // frame and the drag constraints are the bounds of this element.
+  // Pinned to the viewport so stickers roam the whole page as you scroll —
+  // drag constraints are the viewport bounds, not any single section.
   return (
     <div
       ref={viewportRef}
+      aria-hidden="true"
       style={{
-        position: "absolute",
+        position: "fixed",
         inset: 0,
         overflow: "visible",
         pointerEvents: "none",
