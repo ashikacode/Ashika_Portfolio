@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
-import StickerCollage from "@/components/StickerCollage";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -116,8 +115,6 @@ export default function About() {
         <title>About | Ashika Ramesh</title>
         <meta name="description" content="Ashika Ramesh is a Learning, Service and UX Research designer based in Melbourne/NAARM. RMIT Master of Design Innovation and Technology." />
       </Helmet>
-
-      <StickerCollage />
 
       <div className="flex flex-col gap-0 pb-24 overflow-x-clip">
 

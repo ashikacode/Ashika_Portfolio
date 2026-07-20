@@ -240,12 +240,13 @@ export default function StickerCollage() {
     timerRef.current = window.setTimeout(() => setBubbleId(null), 5000);
   };
 
+  // Fills its nearest positioned ancestor — the parent section provides the
+  // frame and the drag constraints are the bounds of this element.
   return (
     <div
       ref={viewportRef}
-      aria-hidden="true"
       style={{
-        position: "fixed",
+        position: "absolute",
         inset: 0,
         overflow: "visible",
         pointerEvents: "none",

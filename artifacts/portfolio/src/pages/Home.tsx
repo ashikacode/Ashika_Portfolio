@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { Link } from "wouter";
 import { useState, useRef } from "react";
+
 // ─── Char-by-char tagline reveal ─────────────────────────────────────────────
 
 function TaglineReveal() {
@@ -16,7 +17,7 @@ function TaglineReveal() {
           animate={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ delay: 0.15 + i * 0.022, duration: 0.42, ease: [0.16, 1, 0.3, 1] }}
         >
-          {char === " " ? " " : char}
+          {char === " " ? " " : char}
         </motion.span>
       ))}
     </p>
@@ -52,7 +53,7 @@ function HeadlineReveal() {
       animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
       transition={{ delay: 0.8 + idx * 0.038, duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
     >
-      {char === " " ? " " : char}
+      {char === " " ? " " : char}
     </motion.span>
   );
 
@@ -230,13 +231,9 @@ export default function Home() {
           className={`h-[100dvh] flex flex-col ${PAD} pt-32`}
           style={{ scrollSnapAlign: "start", scrollSnapStop: "always" }}
         >
-          {/* Tagline — chars reveal */}
           <TaglineReveal />
-
-          {/* Headline — chars blur-in staggered */}
           <HeadlineReveal />
 
-          {/* Description — two sentences, blur-fade */}
           <motion.p
             className="text-sm md:text-base leading-loose text-foreground/55 max-w-xl mt-8 mb-auto"
             initial={{ opacity: 0, filter: "blur(8px)" }}
@@ -249,7 +246,6 @@ export default function Home() {
             that are functional, human, and genuinely felt.
           </motion.p>
 
-          {/* Marquee */}
           <motion.div
             className={`-mx-6 md:-mx-12 lg:-mx-20 mt-auto`}
             initial={{ opacity: 0 }}
@@ -259,7 +255,6 @@ export default function Home() {
             <Marquee />
           </motion.div>
 
-          {/* Scroll nudge */}
           <motion.div
             className="flex items-center gap-3 py-6"
             initial={{ opacity: 0 }}
@@ -390,7 +385,6 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Footer credit */}
             <motion.p
               className="text-xs font-mono text-muted-foreground/25 tracking-[0.15em] uppercase pt-12"
               initial={{ opacity: 0 }}

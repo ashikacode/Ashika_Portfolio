@@ -9,11 +9,13 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Cursor from "@/components/Cursor";
 import LocationWidget from "@/components/LocationWidget";
+import { useLenisGsap } from "@/hooks/use-lenis-gsap";
 
 // Pages
 import Home from "@/pages/Home";
 import Work from "@/pages/Work";
 import About from "@/pages/About";
+import Fun from "@/pages/Fun";
 import Contact from "@/pages/Contact";
 import MemoryInAScent from "@/pages/MemoryInAScent";
 import RiverRenewMataniko from "@/pages/RiverRenewMataniko";
@@ -30,6 +32,11 @@ function Router() {
   const [location] = useLocation();
   const isCaseStudy = /^\/work\/.+/.test(location);
   const isHome = location === "/";
+
+  // Lenis smooth scroll is active on every page except Home, which uses its
+  // own snap-scroll div container. The hook is a no-op when enabled=false and
+  // cleans up (destroys Lenis + removes GSAP ticker) when navigating to Home.
+  useLenisGsap(!isHome);
 
   return (
     <div
@@ -50,6 +57,7 @@ function Router() {
           <Route path="/" component={Home} />
           <Route path="/work" component={Work} />
           <Route path="/about" component={About} />
+          <Route path="/fun" component={Fun} />
           <Route path="/contact" component={Contact} />
           <Route path="/work/dicare" component={DiaCare} />
           <Route path="/work/memory-in-a-scent" component={MemoryInAScent} />
