@@ -23,7 +23,7 @@ export default function Header() {
   const navLinks = [
     { href: "/about", label: "About" },
     { href: "/work", label: "Work" },
-    { href: "/fun", label: "Fun Stuff" },
+    { href: "/fun", label: "Fun" },
   ];
 
   const cvHref = `${import.meta.env.BASE_URL}Ashika_Ramesh_CV.pdf`;

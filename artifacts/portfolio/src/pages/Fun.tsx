@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 import StickerCollage from "@/components/StickerCollage";
-import artworkClip from "@assets/Untitled_Artwork_1782203447595.MP4";
 
 const INSTAGRAM_URL = "https://www.instagram.com/tinte.it/";
 
@@ -81,7 +80,6 @@ const LETTERFORMS: Piece[] = Array.from({ length: 22 }, (_, i) => {
  */
 const SKETCHBOOK: Piece[] = [
   { id: "worryin", kind: "image", src: "/art/worryin.jpg", alt: "Hand-lettered drawing reading 'worryin' is a waste of your imagination, amigo'", caption: "worryin' is a waste of your imagination", rotate: -2 },
-  { id: "procreate-loop", kind: "video", src: artworkClip, alt: "Looping Procreate animation of a logotype", caption: "a lil procreate loop", rotate: 1.5 },
   { id: "cat-and-coffee", kind: "image", src: "/art/cat-and-coffee.jpg", alt: "Painting of a tuxedo cat beside a cup of coffee", caption: "the cat and the coffee", rotate: 2 },
   { id: "scribbles", kind: "video", src: "/art/scribbles.mp4", alt: "Animated line drawing of a figure under a scribbled cloud of thought", caption: "a head full of scribbles", rotate: -1.5 },
   { id: "need-a-minute", kind: "image", src: "/art/need-a-minute.jpg", alt: "Drawing of a green bird holding a mug, captioned 'I'm gonna need a minute'", caption: "gonna need a minute", rotate: -3 },
@@ -177,7 +175,7 @@ export default function Fun() {
   return (
     <>
       <Helmet>
-        <title>Fun Stuff | Ashika Ramesh</title>
+        <title>Fun | Ashika Ramesh</title>
         <meta
           name="description"
           content="The creative break — draggable stickers of home, letterforms, paintings and doodles by Ashika Ramesh (@tinte.it)."
@@ -194,7 +192,7 @@ export default function Fun() {
           className="border-b border-border/30 pb-4"
         >
           <span className="text-xs font-mono tracking-[0.3em] uppercase text-muted-foreground">
-            FUN STUFF — A CREATIVE BREAK
+            FUN — A CREATIVE BREAK
           </span>
         </motion.div>
 
@@ -260,24 +258,9 @@ export default function Fun() {
         </motion.div>
 
         {/*
-         * Stickers are viewport-fixed (see StickerCollage.tsx) so they float
-         * loose over the whole page rather than a boxed-in area — this label
-         * is just a hint; the component itself renders nothing here.
+         * Stickers are viewport-fixed (see StickerCollage.tsx), so they float
+         * loose over the whole page and this renders nothing inline.
          */}
-        <motion.div
-          custom={3}
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          className="mt-24 border-b border-border/30 pb-4 flex flex-wrap items-baseline justify-between gap-3"
-        >
-          <p className="text-xs font-mono tracking-[0.3em] uppercase text-muted-foreground">
-            LITTLE PIECES OF HOME
-          </p>
-          <p className="text-xs font-mono tracking-[0.15em] text-primary/80">
-            ( scattered around the page — drag them anywhere · tap one for its story )
-          </p>
-        </motion.div>
         <StickerCollage />
 
         {/* ── Letterforms — one uniform wall of colour ── */}
@@ -375,8 +358,10 @@ export default function Fun() {
                   transition={{ type: "spring", stiffness: 260, damping: 20 }}
                   className="relative w-full break-inside-avoid mb-6 md:mb-8"
                   style={{
+                    // Deeper bottom edge keeps the polaroid shape now that
+                    // there is no caption sitting under the image.
                     backgroundColor: "#fcf5e9",
-                    padding: "14px 14px 10px",
+                    padding: "14px 14px 30px",
                     boxShadow: "0 16px 40px rgba(0,0,0,0.35)",
                   }}
                 >
@@ -390,12 +375,6 @@ export default function Fun() {
                   >
                     <PieceMedia piece={piece} className="w-full h-auto block" />
                   </button>
-                  <figcaption
-                    className="pt-3 pb-1 text-center text-[#1c1c1c]"
-                    style={{ fontFamily: "'Caveat', cursive", fontSize: 22, lineHeight: 1.2 }}
-                  >
-                    {piece.caption}
-                  </figcaption>
                 </motion.figure>
               );
             })}
@@ -414,7 +393,7 @@ export default function Fun() {
               className="relative w-full break-inside-avoid mb-6 md:mb-8 block"
               style={{
                 backgroundColor: "hsl(178 60% 50%)",
-                padding: "14px 14px 10px",
+                padding: "14px 14px 30px",
                 boxShadow: "0 16px 40px rgba(0,0,0,0.35)",
               }}
             >
@@ -441,16 +420,6 @@ export default function Fun() {
                   @tinte.it ↗
                 </span>
               </div>
-              <p
-                className="pt-3 pb-1 text-center"
-                style={{
-                  fontFamily: "'Caveat', cursive",
-                  fontSize: 22,
-                  color: "hsl(350 60% 15%)",
-                }}
-              >
-                come say hi
-              </p>
             </motion.a>
           </div>
         </motion.section>
