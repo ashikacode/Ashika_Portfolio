@@ -43,6 +43,13 @@ jobs:
       - name: Add custom domain
         run: echo "ashikaramesh.com.au" > artifacts/portfolio/dist/public/CNAME
 
+      # GitHub Pages serves 404.html for any path with no matching file. Since
+      # this is a client-side routed SPA, serving a copy of index.html there
+      # lets the app boot and render routes like /work or /fun when they're
+      # opened directly, refreshed, or shared as a link.
+      - name: Add SPA fallback
+        run: cp artifacts/portfolio/dist/public/index.html artifacts/portfolio/dist/public/404.html
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -171,7 +171,7 @@ export default function Home() {
         <meta property="og:title" content="Ashika Ramesh | Learning & Service Designer" />
         <meta property="og:description" content="Portfolio of Ashika Ramesh, a Learning, Service and UX Research designer based in Melbourne/NAARM." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ashikaramesh.com/" />
+        <meta property="og:url" content="https://ashikaramesh.com.au/" />
       </Helmet>
 
       {/* Floating image preview */}
