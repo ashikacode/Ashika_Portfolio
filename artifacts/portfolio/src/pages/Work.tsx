@@ -196,7 +196,7 @@ export default function Work() {
         <meta property="og:title" content="Selected Work | Ashika Ramesh" />
         <meta property="og:description" content="Selected projects by Ashika Ramesh across learning design, service design, and UX research." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ashikaramesh.com.au/work" />
+        <meta property="og:url" content="https://ashikaramesh.cc/work" />
       </Helmet>
 
       {/* Floating image preview — framer-motion spring cursor tracking */}

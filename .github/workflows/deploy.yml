@@ -41,7 +41,7 @@ jobs:
         run: pnpm --filter @workspace/portfolio run build
 
       - name: Add custom domain
-        run: echo "ashikaramesh.com.au" > artifacts/portfolio/dist/public/CNAME
+        run: echo "ashikaramesh.cc" > artifacts/portfolio/dist/public/CNAME
 
       # GitHub Pages serves 404.html for any path with no matching file. Since
       # this is a client-side routed SPA, serving a copy of index.html there
